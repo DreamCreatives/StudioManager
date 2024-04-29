@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataTable } from 'simple-datatables';
 
 @Component({
   selector: 'app-data-grid',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./data-grid.component.css']
 })
 export class DataGridComponent {
-
+  ngOnInit(): void {
+    let dataTable = new DataTable('#myTable');
+  }
 }
