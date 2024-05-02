@@ -8,6 +8,11 @@ import { DataTable } from 'simple-datatables';
 })
 export class DataGridComponent {
   ngOnInit(): void {
-    let dataTable = new DataTable('#myTable');
+    let dataTable = new DataTable('#myTable', {
+      data: {
+        headings: ['test', 'test1'],
+        data: [['test', 'test']]
+      }
+    });
   }
 }
