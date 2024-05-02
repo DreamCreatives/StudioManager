@@ -8,6 +8,9 @@ import { DataGridComponent } from './shared/components/data-grid/data-grid.compo
 import { Page404Component } from './shared/components/page-404/page-404.component';
 import { MainPageComponent } from './shared/components/main-page/main-page.component';
 import { UserProfileComponent } from './shared/components/user-profile/user-profile.component';
+import { WizardComponent } from './shared/components/wizard/wizard.component';
+import { YesNoComponent } from './shared/components/yes-no/yes-no.component';
+import { ActionBarComponent } from './shared/components/action-bar/action-bar.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { UserProfileComponent } from './shared/components/user-profile/user-prof
     DataGridComponent,
     Page404Component,
     MainPageComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    WizardComponent,
+    YesNoComponent,
+    ActionBarComponent
   ],
   imports: [
     BrowserModule,
