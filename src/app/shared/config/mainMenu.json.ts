@@ -1,8 +1,8 @@
 export const menusConfig = [
     {
         "equipment": {
-            "Equipment list": "",
-            "Equipment types": "",
+            "Equipment list": "equipment-list",
+            "Equipment types": "equipment-types",
             "Equipment reservations": ""
         },
         "podcast": {
@@ -12,10 +12,10 @@ export const menusConfig = [
             "Expansion ideas": ""
         },
         "printers": {
-            "Printers list": "",
+            "Printers list": "printers-list",
             "Printing calendar": "",
             "IOT": "",
-            "STL Files list": ""
+            "STL Files list": "stl-files-list"
         }
     }
 ]

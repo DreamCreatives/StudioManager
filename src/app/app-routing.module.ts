@@ -7,7 +7,10 @@ import { UserProfileComponent } from './shared/components/user-profile/user-prof
 
 const routes: Routes = [
   { path: '', component: MainPageComponent },
-  { path: 'data-grid', component: DataGridComponent },
+  { path: 'equipment-list', title: 'Equipment List', component: DataGridComponent, data: {viewID: 'equipmentList'} },
+  { path: 'equipment-types', title: 'Equipment Types', component: DataGridComponent, data: {viewID: 'equipmentTypes'} },
+  { path: 'printers-list', title: 'Printers List', component: DataGridComponent, data: {viewID: 'printersList'} },
+  { path: 'stl-files-list', title: 'STL Files List', component: DataGridComponent, data: {viewID: 'stlFilesList'} },
   { path: 'user', component: UserProfileComponent },
   { path: '**', component: Page404Component}
 ];
