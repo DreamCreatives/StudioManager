@@ -11,6 +11,7 @@ import { UserProfileComponent } from './shared/components/user-profile/user-prof
 import { WizardComponent } from './shared/components/wizard/wizard.component';
 import { YesNoComponent } from './shared/components/yes-no/yes-no.component';
 import { ActionBarComponent } from './shared/components/action-bar/action-bar.component';
+import { EditComponent } from './shared/components/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ActionBarComponent } from './shared/components/action-bar/action-bar.co
     UserProfileComponent,
     WizardComponent,
     YesNoComponent,
-    ActionBarComponent
+    ActionBarComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
