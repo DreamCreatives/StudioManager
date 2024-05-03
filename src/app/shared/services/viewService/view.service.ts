@@ -15,10 +15,14 @@ export class ViewService {
   }
 
   getWizardConfig(wizardID: string) {
-
+    const wizardKey = wizardID as keyof typeof viewsConfig[0]['wizard']
+    const wizardonfig = viewsConfig[0]['wizard'][wizardKey];
+    return wizardonfig
   }
 
   getEditConfig(editID: string) {
-
+    const editKey = editID as keyof typeof viewsConfig[0]['edit']
+    const editConfig = viewsConfig[0]['edit'][editKey];
+    return editConfig
   }
 }

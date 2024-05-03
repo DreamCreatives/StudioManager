@@ -24,8 +24,8 @@ export class MainMenuComponent implements OnInit {
     const categoryKey = categoryName as keyof typeof menusConfig[0];
 
     for (const key in menusConfig[0][categoryKey]) {
-      const jsonKey = key as keyof typeof menusConfig[0]['equipment'];
-      categoryMenuPositions.push({"name": key, routerPath: menusConfig[0]['equipment'][jsonKey]});
+      const jsonKey = key as keyof typeof menusConfig[0][typeof categoryKey];
+      categoryMenuPositions.push({"name": key, routerPath: menusConfig[0][categoryKey][jsonKey]});
     }
     return categoryMenuPositions;
   }

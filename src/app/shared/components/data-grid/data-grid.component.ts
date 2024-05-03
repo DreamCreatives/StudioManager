@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { DataTable } from 'simple-datatables';
 import { ViewService } from '../../services/viewService/view.service';
+import { ActivatedRoute } from '@angular/router';
+import { switchMap, Observable, subscribeOn } from 'rxjs';
 
 @Component({
   selector: 'app-data-grid',
@@ -10,17 +12,21 @@ import { ViewService } from '../../services/viewService/view.service';
 
 export class DataGridComponent {
   public dataGridName = '';
-  constructor(private viewService: ViewService) {}
+  public viewID = ''
+  constructor(private viewService: ViewService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    const dataGridConfig = this.viewService.getDataGridConfig('equipmentList');
+    const viewID = this.route.data.subscribe(view => {
+      this.viewID = view['viewID'];
+    });
+
+    const dataGridConfig = this.viewService.getDataGridConfig(this.viewID);
 
     this.dataGridName = dataGridConfig['dataGridName'];
     const dataTable = new DataTable('#dataGridTable', {
-      caption: 'Testing caption',
       data: {
         headings: dataGridConfig.headers,
-        data: [[1, 'test'], [2, 'test'], [3, 'test'], [4, 'test']]
+        data: dataGridConfig.data
       },
       perPageSelect: [10, 25, 50]
     });
@@ -56,4 +62,8 @@ export class DataGridComponent {
       cell.style.background = 'lightgrey';
     })
   }
+
+  // ngOnDestroy() {
+  //   this.sub.unsubscribe();
+  // }
 }
