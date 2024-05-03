@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { DataTable } from 'simple-datatables';
 import { ViewService } from '../../services/viewService/view.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap, Observable, subscribeOn } from 'rxjs';
 
 @Component({
@@ -11,9 +11,10 @@ import { switchMap, Observable, subscribeOn } from 'rxjs';
 })
 
 export class DataGridComponent {
+  constructor(private viewService: ViewService, private route: ActivatedRoute, private router: Router) {}
+
   public dataGridName = '';
-  public viewID = ''
-  constructor(private viewService: ViewService, private route: ActivatedRoute) {}
+  private viewID = ''
 
   ngOnInit(): void {
     const viewID = this.route.data.subscribe(view => {
@@ -22,8 +23,9 @@ export class DataGridComponent {
 
     const dataGridConfig = this.viewService.getDataGridConfig(this.viewID);
 
-    this.dataGridName = dataGridConfig['dataGridName'];
-    const dataTable = new DataTable('#dataGridTable', {
+    this.dataGridName = dataGridConfig.dataGridName;
+
+    new DataTable('#dataGridTable', {
       data: {
         headings: dataGridConfig.headers,
         data: dataGridConfig.data
@@ -36,7 +38,8 @@ export class DataGridComponent {
     rows.forEach(row => {
       row.addEventListener('dblclick', () => {
         console.log('open edition');
-        console.log(row.cells[0].textContent)
+        console.log(row.cells[0].textContent);
+        this.rerouteToEdit(dataGridConfig['reroutePath'], row.cells[0].textContent);
       });
     });
 
@@ -63,7 +66,8 @@ export class DataGridComponent {
     })
   }
 
-  // ngOnDestroy() {
-  //   this.sub.unsubscribe();
-  // }
+  rerouteToEdit(reroutePath: string, objectID: string | null) {
+    if (objectID)
+      this.router.navigate([reroutePath, objectID]);
+  }
 }
