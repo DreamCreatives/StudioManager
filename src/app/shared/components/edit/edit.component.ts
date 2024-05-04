@@ -21,9 +21,11 @@ export class EditComponent {
 
     const editConfig = this.viewService.getEditConfig(this.viewID);
 
-    for (const key in editConfig.fields) {
-      const fieldKey = key as keyof typeof editConfig['fields'];
-      this.fields.push({"name": key, "type": editConfig.fields[fieldKey]});
+    for (const field of editConfig.fields) {
+      this.fields.push({
+        name: field.fieldName,
+        type: field.fieldType
+      })
     }
   }
 }
