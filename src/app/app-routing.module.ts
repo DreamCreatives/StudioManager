@@ -8,13 +8,18 @@ import { EditComponent } from './shared/components/edit/edit.component';
 
 const routes: Routes = [
   { path: '', component: MainPageComponent },
+  //Data grids
   { path: 'equipment-list', title: 'Equipment List', component: DataGridComponent, data: {viewID: 'equipmentList'} },
-  { path: 'equipment-types', title: 'Equipment Types', component: DataGridComponent, data: {viewID: 'equipmentTypes'} },
+  { path: 'equipment-types-list', title: 'Equipment Types', component: DataGridComponent, data: {viewID: 'equipmentTypes'} },
   { path: 'printers-list', title: 'Printers List', component: DataGridComponent, data: {viewID: 'printersList'} },
   { path: 'stl-files-list', title: 'STL Files List', component: DataGridComponent, data: {viewID: 'stlFilesList'} },
 
+  //Edits
   { path: 'equipment-list/:id', title: 'Equipment details', component: EditComponent, data: {viewID: 'equipmentDetail'} },
+  { path: 'equipment-types-list/:id', title: 'Equipment Type details', component: EditComponent, data: {viewID: 'equipmentTypeDetail'} },
   { path: 'printers-list/:id', title: 'Printer details', component: EditComponent, data: {viewID: 'printerDetail'} },
+  { path: 'stl-files-list/:id', title: 'STL File details', component: EditComponent, data: {viewID: 'stlFileDetail'} },
+  
 
   { path: 'user', component: UserProfileComponent },
   { path: '**', component: Page404Component}

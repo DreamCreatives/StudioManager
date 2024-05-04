@@ -15,7 +15,7 @@ export class EditComponent {
   public fields: EditField[] = [];
 
   ngOnInit(): void {
-    const viewID = this.route.data.subscribe(view => {
+    this.route.data.subscribe(view => {
       this.viewID = view['viewID'];
     });
 
