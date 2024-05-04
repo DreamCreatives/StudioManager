@@ -9,7 +9,7 @@ export const viewsConfig = [
             },
             "equipmentTypes": {
                 dataGridName: 'Equipment types',
-                reroutePath: 'equipment-types',
+                reroutePath: 'equipment-types-list',
                 headers: ["ID", "Name"],
                 data: [[1, 'test equ type'], [2, 'test'], [3, 'test'], [4, 'test']]
             },
@@ -21,7 +21,7 @@ export const viewsConfig = [
             },
             "stlFilesList": {
                 dataGridName: 'STL files list',
-                reroutePath: 'stl-foles-list',
+                reroutePath: 'stl-files-list',
                 headers: ["ID", "STL file name", "size"],
                 data: [[1, "Ender 3", "test ip"], [2, "Ender 3 V2", "test ip 2"]]
             }
@@ -33,10 +33,20 @@ export const viewsConfig = [
                     "Type": "number"
                 }
             },
+            "equipmentTypeDetail": {
+                fields: {
+                    "Name": "text"
+                }
+            },
             "printerDetail": {
                 fields: {
                     "Printer Name": "text",
                     "Type": "number"
+                }
+            },
+            "stlFileDetail": {
+                fields: {
+                    "Name": "text"
                 }
             }
         },
