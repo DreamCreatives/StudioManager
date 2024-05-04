@@ -6,7 +6,10 @@ export interface DataGrid {
 }
 
 export interface Edit {
-    fields: {string: string}
+    fields: {
+        fieldName: string;
+        fieldType: string;
+    }[]
 }
 
 export interface Actions {

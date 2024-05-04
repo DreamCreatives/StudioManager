@@ -28,26 +28,44 @@ export const viewsConfig = [
         },
         "edit": {
             "equipmentDetail": {
-                fields: {
-                    "Equipment Name": "text",
-                    "Type": "number"
-                }
+                fields: [
+                    {
+                        fieldName: "Equipment name",
+                        fieldType: "text"
+                    },
+                    {
+                        fieldName: "Type",
+                        fieldType: "number"
+                    }
+                ]
             },
             "equipmentTypeDetail": {
-                fields: {
-                    "Name": "text"
-                }
+                fields: [
+                    {
+                        fieldName: "Name",
+                        fieldType: "text"
+                    }
+                ]
             },
             "printerDetail": {
-                fields: {
-                    "Printer Name": "text",
-                    "Type": "number"
-                }
+                fields: [
+                    {
+                        fieldName: "Printer name",
+                        fieldType: "text",
+                    },
+                    {
+                        fieldName: "Type",
+                        fieldType: "Number"
+                    }
+                ]
             },
             "stlFileDetail": {
-                fields: {
-                    "Name": "text"
-                }
+                fields: [
+                    {
+                        fieldName: "Name",
+                        fieldType: "text"
+                    }
+                ]
             }
         },
         "wizard": {
