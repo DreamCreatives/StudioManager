@@ -13,6 +13,7 @@ export interface Edit {
         fieldName: string;
     }[],
     rerouteOnCancel: string;
+    baseUrl: string;
     formBuilderGroupFields: {
         fieldKey: string;
         fieldValue: string;

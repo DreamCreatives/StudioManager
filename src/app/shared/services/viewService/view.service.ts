@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { viewsConfig } from '../../config/views.json';
 import { actionsConfig } from '../../config/actions.json';
 import { DataGrid, Actions, Edit } from '../../models/view.models';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ViewService {
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
-  getDataGridConfig(dataGridID: string): DataGrid {
+  getDataGridConfig(dataGridID: string): Observable<DataGrid> {
     const dataGridKey = dataGridID as keyof typeof viewsConfig[0]['dataGrid'];
     const dataGridConfig = viewsConfig[0]['dataGrid'][dataGridKey];
-    return dataGridConfig;
+    return of(dataGridConfig);
   }
 
   getWizardConfig(wizardID: string) {
@@ -23,10 +23,10 @@ export class ViewService {
     return wizardConfig;
   }
 
-  getEditConfig(editID: string): Edit {
+  getEditConfig(editID: string): Observable<Edit> {
     const editKey = editID as keyof typeof viewsConfig[0]['edit'];
     const editConfig = viewsConfig[0]['edit'][editKey];
-    return editConfig;
+    return of(editConfig);
   }
 
   getActionsConfig(viewID: string): Actions {
@@ -35,11 +35,4 @@ export class ViewService {
     return actionConfig;
   }
 
-  getDataGridData(url: string, parameters: string) {
-    console.log(url);
-    console.log(parameters);
-    // const headers = new HttpHeaders().set('Accept', 'application/json');
-    const headers = new HttpHeaders().set('access-control-allow-origin',"http://localhost:5001/")
-    return this.http.get('http://localhost:5001/api/v1/Equipment/Types', { headers });
-  }
 }

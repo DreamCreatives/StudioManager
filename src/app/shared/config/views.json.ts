@@ -45,6 +45,7 @@ export const viewsConfig = [
                     }
                 ],
                 rerouteOnCancel: 'equipment-list',
+                baseUrl: '',
                 formBuilderGroupFields: [
                     {
                         fieldKey: 'equipmentName',
@@ -61,13 +62,14 @@ export const viewsConfig = [
                     {
                         fieldLabel: "Name",
                         fieldType: "text",
-                        fieldName: "equipmentTypeName"
+                        fieldName: "name"
                     }
                 ],
                 rerouteOnCancel: 'equipment-types-list',
+                baseUrl: 'http://localhost:5001/api/v1/Equipment/Types',
                 formBuilderGroupFields: [
                     {
-                        fieldKey: 'equipmentTypeName',
+                        fieldKey: 'name',
                         fieldValue: ''
                     },
                 ]
@@ -86,6 +88,7 @@ export const viewsConfig = [
                     }
                 ],
                 rerouteOnCancel: '',
+                baseUrl: '',
                 formBuilderGroupFields: []
             },
             "stlFileDetail": {
@@ -97,6 +100,7 @@ export const viewsConfig = [
                     }
                 ],
                 rerouteOnCancel: '',
+                baseUrl: '',
                 formBuilderGroupFields: []
             }
         },
