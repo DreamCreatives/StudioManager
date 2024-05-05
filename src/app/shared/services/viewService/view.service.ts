@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { viewsConfig } from '../../config/views.json';
 import { actionsConfig } from '../../config/actions.json';
 import { DataGrid, Actions, Edit } from '../../models/view.models';
@@ -38,6 +38,8 @@ export class ViewService {
   getDataGridData(url: string, parameters: string) {
     console.log(url);
     console.log(parameters);
-    return this.http.get(url);
+    // const headers = new HttpHeaders().set('Accept', 'application/json');
+    const headers = new HttpHeaders().set('access-control-allow-origin',"http://localhost:5001/")
+    return this.http.get('http://localhost:5001/api/v1/Equipment/Types', { headers });
   }
 }
