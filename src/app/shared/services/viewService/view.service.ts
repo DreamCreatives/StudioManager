@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { viewsConfig } from '../../config/views.json';
 import { actionsConfig } from '../../config/actions.json';
 import { DataGrid, Actions, Edit } from '../../models/view.models';
@@ -8,7 +9,7 @@ import { DataGrid, Actions, Edit } from '../../models/view.models';
 })
 export class ViewService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getDataGridConfig(dataGridID: string): DataGrid {
     const dataGridKey = dataGridID as keyof typeof viewsConfig[0]['dataGrid'];
@@ -32,5 +33,11 @@ export class ViewService {
     const actionKey = viewID as keyof typeof actionsConfig[0];
     const actionConfig = actionsConfig[0][actionKey];
     return actionConfig;
+  }
+
+  getDataGridData(url: string, parameters: string) {
+    console.log(url);
+    console.log(parameters);
+    return this.http.get(url);
   }
 }

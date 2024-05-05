@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { ViewService } from '../../services/viewService/view.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EditField } from '../../models/edit.models';

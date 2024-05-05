@@ -33,6 +33,12 @@ export class DataGridComponent {
       perPageSelect: [10, 25, 50]
     });
     
+    const requestData = this.viewService.getDataGridData(dataGridConfig.getUrl, '').subscribe(v => {
+      console.log(v);
+    });
+    // console.log(requestData);
+
+
     const rows = document.querySelectorAll<HTMLTableRowElement>('#dataGridTable tr');
 
     rows.forEach(row => {
