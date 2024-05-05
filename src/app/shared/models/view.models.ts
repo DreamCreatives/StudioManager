@@ -3,6 +3,7 @@ export interface DataGrid {
     reroutePath: string;
     headers: string[];
     data: (string | number)[][];
+    getUrl: string;
 }
 
 export interface Edit {
