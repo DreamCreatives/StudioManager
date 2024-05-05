@@ -1,4 +1,5 @@
 export interface EditField {
-    name: string;
+    label: string;
     type: string;
+    name: string;
 }
