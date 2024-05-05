@@ -7,8 +7,14 @@ export interface DataGrid {
 
 export interface Edit {
     fields: {
-        fieldName: string;
+        fieldLabel: string;
         fieldType: string;
+        fieldName: string;
+    }[],
+    rerouteOnCancel: string;
+    formBuilderGroupFields: {
+        fieldKey: string;
+        fieldValue: string;
     }[]
 }
 

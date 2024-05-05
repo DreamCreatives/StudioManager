@@ -30,42 +30,70 @@ export const viewsConfig = [
             "equipmentDetail": {
                 fields: [
                     {
-                        fieldName: "Equipment name",
-                        fieldType: "text"
+                        fieldLabel: "Equipment name",
+                        fieldType: "text",
+                        fieldName: "equipmentName"
                     },
                     {
-                        fieldName: "Type",
-                        fieldType: "number"
+                        fieldLabel: "Type",
+                        fieldType: "number",
+                        fieldName: "equipmentType"
+                    }
+                ],
+                rerouteOnCancel: 'equipment-list',
+                formBuilderGroupFields: [
+                    {
+                        fieldKey: 'equipmentName',
+                        fieldValue: ''
+                    },
+                    {
+                        fieldKey: 'equipmentType',
+                        fieldValue: ''
                     }
                 ]
             },
             "equipmentTypeDetail": {
                 fields: [
                     {
-                        fieldName: "Name",
-                        fieldType: "text"
+                        fieldLabel: "Name",
+                        fieldType: "text",
+                        fieldName: "equipmentTypeName"
                     }
+                ],
+                rerouteOnCancel: 'equipment-types-list',
+                formBuilderGroupFields: [
+                    {
+                        fieldKey: 'equipmentTypeName',
+                        fieldValue: ''
+                    },
                 ]
             },
             "printerDetail": {
                 fields: [
                     {
-                        fieldName: "Printer name",
+                        fieldLabel: "Printer name",
                         fieldType: "text",
+                        fieldName: "printerName"
                     },
                     {
-                        fieldName: "Type",
-                        fieldType: "Number"
+                        fieldLabel: "Type",
+                        fieldType: "Number",
+                        fieldName: "printerTypeName"
                     }
-                ]
+                ],
+                rerouteOnCancel: '',
+                formBuilderGroupFields: []
             },
             "stlFileDetail": {
                 fields: [
                     {
-                        fieldName: "Name",
-                        fieldType: "text"
+                        fieldLabel: "Name",
+                        fieldType: "text",
+                        fieldName: "stlFiletName"
                     }
-                ]
+                ],
+                rerouteOnCancel: '',
+                formBuilderGroupFields: []
             }
         },
         "wizard": {
