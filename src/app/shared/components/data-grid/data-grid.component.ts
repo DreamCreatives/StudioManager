@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { DataTable } from 'simple-datatables';
 import { ViewService } from '../../services/viewService/view.service';
+import { ApiService } from '../../services/apiService/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap, Observable, subscribeOn } from 'rxjs';
+import { switchMap, Observable, of, tap } from 'rxjs';
 
 @Component({
   selector: 'app-data-grid',
@@ -11,51 +12,66 @@ import { switchMap, Observable, subscribeOn } from 'rxjs';
 })
 
 export class DataGridComponent {
-  constructor(private viewService: ViewService, private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private viewService: ViewService,
+    private apiService: ApiService,
+    private route: ActivatedRoute,
+    private router: Router
+) {}
 
   public dataGridName = '';
-  private viewID = ''
 
   ngOnInit(): void {
-    const viewID = this.route.data.subscribe(view => {
-      this.viewID = view['viewID'];
-    });
+    this.route.data.pipe(
+      switchMap(view => {
+        return this.viewService.getDataGridConfig(view['viewID'])
+      }),
+      tap(dataGridConfig => {
+        this.dataGridName = dataGridConfig.dataGridName;
+      }),
+      switchMap(dataGridConfig => 
+        this.apiService.getDataGridData(dataGridConfig.getUrl).pipe(
+          tap(response => {
+            const data: (string)[][] = [];
 
-    const dataGridConfig = this.viewService.getDataGridConfig(this.viewID);
+            for (const row in response) {
+              const dataRow: (string )[] = [];
+              const rowKey = row as keyof typeof response;
+              
+              for (const object in response[rowKey]) {
+                const objectKey = object as keyof typeof response[typeof rowKey];
+                dataRow.push(response[rowKey][objectKey]);
+              }
 
-    this.dataGridName = dataGridConfig.dataGridName;
+              data.push(dataRow);
+            }
+      
+            new DataTable('#dataGridTable', {
+              data: {
+                headings: dataGridConfig.headers,
+                data: data
+              },
+              perPageSelect: [10, 25, 50]
+            });
 
-    new DataTable('#dataGridTable', {
-      data: {
-        headings: dataGridConfig.headers,
-        data: dataGridConfig.data
-      },
-      perPageSelect: [10, 25, 50]
-    });
-    
-    const requestData = this.viewService.getDataGridData(dataGridConfig.getUrl, '').subscribe(v => {
-      console.log(v);
-    });
-    // console.log(requestData);
+            const rows = document.querySelectorAll<HTMLTableRowElement>('#dataGridTable tr');
 
+            rows.forEach(row => {
+              row.addEventListener('dblclick', () => {
+                this.rerouteToEdit(dataGridConfig['reroutePath'], row.cells[0].textContent);
+              });
+            });
 
-    const rows = document.querySelectorAll<HTMLTableRowElement>('#dataGridTable tr');
-
-    rows.forEach(row => {
-      row.addEventListener('dblclick', () => {
-        console.log('open edition');
-        console.log(row.cells[0].textContent);
-        this.rerouteToEdit(dataGridConfig['reroutePath'], row.cells[0].textContent);
-      });
-    });
-
-    rows.forEach(row => {
-      row.addEventListener('click', () => {
-        console.log(row.cells[0].textContent);
-        this.unselectAllCells();
-        this.selectRow(row);
-      });
-    });
+            rows.forEach(row => {
+              row.addEventListener('click', () => {
+                this.unselectAllCells();
+                this.selectRow(row);
+              });
+            });
+          })
+        )
+      )
+    ).subscribe();    
   }
 
   unselectAllCells(): void {
@@ -65,14 +81,14 @@ export class DataGridComponent {
     })
   }
 
-  selectRow(row: HTMLTableRowElement) {
+  selectRow(row: HTMLTableRowElement): void {
     const cells = Array.from(row.cells);
     cells.forEach(cell => {
       cell.style.background = 'lightgrey';
     })
   }
 
-  rerouteToEdit(reroutePath: string, objectID: string | null) {
+  rerouteToEdit(reroutePath: string, objectID: string | null): void {
     if (objectID)
       this.router.navigate([reroutePath, objectID]);
   }
