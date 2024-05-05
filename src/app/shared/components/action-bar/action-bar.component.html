@@ -3,7 +3,7 @@
       <div class="col-lg-12">
         <div class="card">
           <div class="card-body">
-            <button *ngFor="let action of actionsList" type="button" class="btn btn-primary mt-3 me-3">
+            <button *ngFor="let action of actionsList" type="button" class="btn btn-primary mt-3 me-3" (click)="executeFunction(action.actionName)">
               {{ action.displayName }}
             </button>
           </div>

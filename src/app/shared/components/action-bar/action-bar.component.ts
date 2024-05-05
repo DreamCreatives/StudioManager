@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ViewService } from '../../services/viewService/view.service';
+import { ActionService } from '../../services/actionService/action.service';
 import { ActivatedRoute } from '@angular/router';
 import { Action } from '../../models/view.models';
 
@@ -10,8 +11,12 @@ import { Action } from '../../models/view.models';
 })
 
 export class ActionBarComponent {
-  constructor(private viewService: ViewService, private route: ActivatedRoute) { }
-  
+  constructor(
+    private viewService: ViewService,
+    private actionService: ActionService,
+    private route: ActivatedRoute
+  ) { }
+
   public actionsList: Action[] = [];
   private viewID = '';
 
@@ -23,5 +28,9 @@ export class ActionBarComponent {
     const actionsConfig = this.viewService.getActionsConfig(this.viewID);
     
     this.actionsList = actionsConfig.actions;
+  }
+
+  executeFunction(functionName: string) {
+    this.actionService.executeFunction(functionName);
   }
 }
