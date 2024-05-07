@@ -3,6 +3,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
+import { WizardService } from './shared/services/wizardService/wizard.service';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainMenuComponent } from './shared/components/main-menu/main-menu.component';
@@ -14,6 +16,8 @@ import { WizardComponent } from './shared/components/wizard/wizard.component';
 import { YesNoComponent } from './shared/components/yes-no/yes-no.component';
 import { ActionBarComponent } from './shared/components/action-bar/action-bar.component';
 import { EditComponent } from './shared/components/edit/edit.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -33,9 +37,14 @@ import { EditComponent } from './shared/components/edit/edit.component';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NoopAnimationsModule,
+    MatDialogModule,
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    { provide: MatDialogRef, useValue: {} }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
