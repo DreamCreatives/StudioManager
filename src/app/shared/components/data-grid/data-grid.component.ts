@@ -4,6 +4,7 @@ import { ViewService } from '../../services/viewService/view.service';
 import { ApiService } from '../../services/apiService/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap, Observable, of, tap } from 'rxjs';
+import { WizardService } from '../../services/wizardService/wizard.service';
 
 @Component({
   selector: 'app-data-grid',
@@ -16,7 +17,8 @@ export class DataGridComponent {
     private viewService: ViewService,
     private apiService: ApiService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private wizardService: WizardService,
 ) {}
 
   public dataGridName = '';
@@ -91,5 +93,9 @@ export class DataGridComponent {
   rerouteToEdit(reroutePath: string, objectID: string | null): void {
     if (objectID)
       this.router.navigate([reroutePath, objectID]);
+  }
+
+  openDialog(): void {
+    this.wizardService.openDialog('Custom Title', 'Custom Message');
   }
 }

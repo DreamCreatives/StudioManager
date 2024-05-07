@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Injectable } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Injectable({
   providedIn: 'root'
@@ -11,4 +12,6 @@ import { Injectable } from '@angular/core';
   styleUrls: ['./wizard.component.css']
 })
 
-export class WizardComponent { }
+export class WizardComponent {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
+}
