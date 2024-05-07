@@ -1,2 +1,26 @@
-<h1>{{ data.title }}</h1>
-<p>{{ data.message }}</p>
+<div class="custom-dialog">
+    <div class="dialog-title">
+        <h2 class="title">
+            {{ data.title }}
+        </h2>
+    </div>
+    <div class="dialog-content">
+        <form [formGroup]="wizardForm" (ngSubmit)="save()">
+            <div class="row mb-3" *ngFor="let field of fields">
+            <label for="inputText" class="col-sm-2 col-form-label">{{ field.label }}</label>
+            <div class="col-sm-10">
+                <input type="{{ field.type }}" class="form-control" formControlName="{{ field.name }}">
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-sm-10"></div>
+            <div class="toolbar">
+                <button class="btn-wizard btn-danger" type="button" (click)="cancel()">Cancel</button>
+                <button class="btn-wizard btn-primary" type="submit">Save</button>
+            </div>
+            </div>
+        </form>
+    </div>
+
+
+</div>

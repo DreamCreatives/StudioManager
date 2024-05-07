@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { viewsConfig } from '../../config/views.json';
 import { actionsConfig } from '../../config/actions.json';
-import { DataGrid, Actions, Edit } from '../../models/view.models';
+import { DataGrid, Actions, Edit, Wizard } from '../../models/view.models';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
@@ -17,10 +17,10 @@ export class ViewService {
     return of(dataGridConfig);
   }
 
-  getWizardConfig(wizardID: string) {
+  getWizardConfig(wizardID: string): Observable<Wizard> {
     const wizardKey = wizardID as keyof typeof viewsConfig[0]['wizard']
     const wizardConfig = viewsConfig[0]['wizard'][wizardKey];
-    return wizardConfig;
+    return of(wizardConfig);
   }
 
   getEditConfig(editID: string): Observable<Edit> {
