@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { WizardService } from '../wizardService/wizard.service';
+import { YesNoService } from '../yesNoService/yes-no.service';
 import { switchMap, of, tap, filter, defaultIfEmpty } from 'rxjs';
 
 @Injectable({
@@ -7,7 +8,7 @@ import { switchMap, of, tap, filter, defaultIfEmpty } from 'rxjs';
 })
 export class ActionService {
 
-  constructor(private wizardService: WizardService) { }
+  constructor(private wizardService: WizardService, private yesNoService: YesNoService) { }
 
   executeFunction(functionName: string) {
     (this as any)[functionName]().subscribe();
@@ -26,5 +27,14 @@ export class ActionService {
 
   equListTestAction() {
     console.log('equ list');
+  }
+
+  testYesNoAction() {
+    return this.yesNoService.run('test question').pipe(
+      switchMap(response => {
+        console.log(response);
+        return of(null);
+      })
+    );
   }
 }

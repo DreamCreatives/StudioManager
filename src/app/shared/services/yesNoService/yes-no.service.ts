@@ -1,0 +1,33 @@
+import { Injectable } from '@angular/core';
+import { ViewService } from '../viewService/view.service';
+import { MatDialog } from '@angular/material/dialog';
+import { fromEvent, Observable, switchMap, of } from 'rxjs';
+import { YesNoComponent } from '../../components/yes-no/yes-no.component';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class YesNoService {
+  buttonClicks$: Observable<Event> = fromEvent(document.getElementsByClassName('btn-yes-no'), 'click');
+  
+  constructor(private dialog: MatDialog) { }
+
+  public isSaved: boolean = false;
+
+  run(question: string): Observable<boolean> {
+    this.dialog.open(YesNoComponent, {
+      width: '25%',
+      data: {
+        question: question,
+      },
+      panelClass: 'custom-modalbox',
+      disableClose: true,
+    });
+    return this.buttonClicks$.pipe(
+      switchMap(() => {
+        this.dialog.closeAll();
+        return of(this.isSaved);
+      })
+    );
+  }
+}
