@@ -94,8 +94,4 @@ export class DataGridComponent {
     if (objectID)
       this.router.navigate([reroutePath, objectID]);
   }
-
-  openDialog(): void {
-    this.wizardService.openDialog('Custom Title', 'Custom Message');
-  }
 }

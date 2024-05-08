@@ -12,12 +12,8 @@ export const actionsConfig = [
         "equipmentTypes": {
             actions: [
                 {
-                    displayName: 'Test action',
-                    actionName: 'testAction',
-                },
-                {
-                    displayName: 'Test action 1',
-                    actionName: 'testAction1',
+                    displayName: 'Test wizard action',
+                    actionName: 'testWizardAction',
                 }
             ]
         },

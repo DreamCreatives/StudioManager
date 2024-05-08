@@ -83,7 +83,7 @@ export const viewsConfig = [
                     },
                     {
                         fieldLabel: "Type",
-                        fieldType: "Number",
+                        fieldType: "number",
                         fieldName: "printerTypeName"
                     }
                 ],
@@ -105,7 +105,31 @@ export const viewsConfig = [
             }
         },
         "wizard": {
-
+            "addEquipmentList": {
+                title: 'Testing wizard',
+                fields: [
+                    {
+                        fieldLabel: "Test text",
+                        fieldType: "text",
+                        fieldName: "testText"
+                    },
+                    {
+                        fieldLabel: "Test number",
+                        fieldType: "number",
+                        fieldName: "testNumber"
+                    }
+                ],
+                formBuilderGroupFields: [
+                    {
+                        fieldKey: 'testText',
+                        fieldValue: ''
+                    },
+                    {
+                        fieldKey: 'testNumber',
+                        fieldValue: 0
+                    }
+                ]
+            }
         },
     }
 ]

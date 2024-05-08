@@ -20,6 +20,19 @@ export interface Edit {
     }[]
 }
 
+export interface Wizard {
+    title: string;
+    fields: {
+        fieldLabel: string;
+        fieldType: string;
+        fieldName: string;
+    }[],
+    formBuilderGroupFields: {
+        fieldKey: string;
+        fieldValue: string | number;
+    }[]
+}
+
 export interface Actions {
     actions: {
         displayName: string;
