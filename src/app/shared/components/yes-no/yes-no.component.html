@@ -1,1 +1,13 @@
-<p>yes-no works!</p>
+<div class="custom-dialog">
+    <div class="dialog-title">
+        <h2 class="title">
+            {{ data.question }}
+        </h2>
+    </div>
+    <div class="dialog-content">
+        <div class="toolbar">
+            <button class="btn-yes-no btn-danger" type="button" (click)="no()">No</button>
+            <button class="btn-yes-no btn-primary" type="button" (click)="yes()">Yes</button>
+        </div>
+    </div>
+</div>

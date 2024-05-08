@@ -14,6 +14,10 @@ export const actionsConfig = [
                 {
                     displayName: 'Test wizard action',
                     actionName: 'testWizardAction',
+                },
+                {
+                    displayName: 'Test yes no action',
+                    actionName: 'testYesNoAction',
                 }
             ]
         },
