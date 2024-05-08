@@ -21,6 +21,7 @@ export class WizardService {
   ) { }
 
   public isSaved: boolean = false;
+  public savedFields = {};
   public wizardForm = this.formBuilder.group({});
   public fields: WizardField[] = [];
   
@@ -44,8 +45,13 @@ export class WizardService {
         }
         this.dialog.open(WizardComponent, {
           width: '25%',
-          data: { title: wizardConfig.title },
-          panelClass: 'custom-modalbox'
+          data: {
+            title: wizardConfig.title,
+            formGroup: this.wizardForm,
+            fields: this.fields
+          },
+          panelClass: 'custom-modalbox',
+          disableClose: true,
         });
         return of(null);
       })
@@ -56,7 +62,7 @@ export class WizardService {
     return this.buttonClick$.pipe(
       switchMap(() => {
         this.dialog.closeAll();
-        return of({ save: this.isSaved });
+        return of({ save: this.isSaved, savedFields: this.savedFields });
       })
     );
     

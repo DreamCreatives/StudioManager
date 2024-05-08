@@ -29,7 +29,7 @@ export interface Wizard {
     }[],
     formBuilderGroupFields: {
         fieldKey: string;
-        fieldValue: string;
+        fieldValue: string | number;
     }[]
 }
 

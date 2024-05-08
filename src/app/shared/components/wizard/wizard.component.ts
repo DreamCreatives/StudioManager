@@ -26,20 +26,18 @@ export class WizardComponent {
   public wizardForm = this.formBuilder.group({});
   public fields: WizardField[] = [];
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.wizardForm = this.wizardService.wizardForm;
     this.fields = this.wizardService.fields;
-    console.log(this.wizardForm);
-    console.log(this.fields);
   }
 
-  save() {
-    console.log(this.wizardForm.value);
+  save(): void {
+    this.wizardService.savedFields = this.wizardForm.value;
     this.wizardService.isSaved = true;
     this.wizardService.destroy();
   }
 
-  cancel() {
+  cancel(): void {
     this.wizardService.isSaved = false;
     this.wizardService.destroy();
   }

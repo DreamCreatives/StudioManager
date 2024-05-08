@@ -53,6 +53,7 @@ export class EditComponent {
 
               editFormBuilderGroup[formBuilderGroupField.fieldKey] = fieldValue;
             }
+
             this.editForm = this.formBuilder.group(editFormBuilderGroup);
 
             for (const field of editConfig.fields) {

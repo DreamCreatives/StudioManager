@@ -112,12 +112,21 @@ export const viewsConfig = [
                         fieldLabel: "Test text",
                         fieldType: "text",
                         fieldName: "testText"
+                    },
+                    {
+                        fieldLabel: "Test number",
+                        fieldType: "number",
+                        fieldName: "testNumber"
                     }
                 ],
                 formBuilderGroupFields: [
                     {
                         fieldKey: 'testText',
                         fieldValue: ''
+                    },
+                    {
+                        fieldKey: 'testNumber',
+                        fieldValue: 0
                     }
                 ]
             }
