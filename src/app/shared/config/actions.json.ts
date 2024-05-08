@@ -11,13 +11,21 @@ export const actionsConfig = [
         },
         "equipmentTypes": {
             actions: [
+                // {
+                //     displayName: 'Test wizard action',
+                //     actionName: 'testWizardAction',
+                // },
+                // {
+                //     displayName: 'Test yes no action',
+                //     actionName: 'testYesNoAction',
+                // },
                 {
-                    displayName: 'Test wizard action',
-                    actionName: 'testWizardAction',
+                    displayName: 'Create',
+                    actionName: 'createEquipmentType',
                 },
                 {
-                    displayName: 'Test yes no action',
-                    actionName: 'testYesNoAction',
+                    displayName: 'Delete',
+                    actionName: 'deleteEquipmentType',
                 }
             ]
         },
