@@ -44,7 +44,6 @@ export class WizardService {
           })
         }
         this.dialog.open(WizardComponent, {
-          width: '25%',
           data: {
             title: wizardConfig.title,
             formGroup: this.wizardForm,

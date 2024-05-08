@@ -18,12 +18,12 @@ export class DataGridComponent {
     private apiService: ApiService,
     private route: ActivatedRoute,
     private router: Router,
-    private wizardService: WizardService,
 ) {}
 
   public dataGridName = '';
 
   ngOnInit(): void {
+    this.viewService.objID = null;
     this.route.data.pipe(
       switchMap(view => {
         return this.viewService.getDataGridConfig(view['viewID'])
@@ -85,7 +85,12 @@ export class DataGridComponent {
 
   selectRow(row: HTMLTableRowElement): void {
     const cells = Array.from(row.cells);
+    let isFirstCell = true;
     cells.forEach(cell => {
+      if (isFirstCell) {
+        this.viewService.objID = cell.textContent;
+        isFirstCell = false;
+      }
       cell.style.background = 'lightgrey';
     })
   }

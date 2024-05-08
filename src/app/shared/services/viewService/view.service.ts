@@ -11,6 +11,8 @@ export class ViewService {
 
   constructor() { }
 
+  public objID: string | null = null;
+
   getDataGridConfig(dataGridID: string): Observable<DataGrid> {
     const dataGridKey = dataGridID as keyof typeof viewsConfig[0]['dataGrid'];
     const dataGridConfig = viewsConfig[0]['dataGrid'][dataGridKey];

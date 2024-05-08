@@ -22,10 +22,19 @@ export class ApiService {
 
   saveEdit(url: string, body: any, params: any, objectID: string): Observable<boolean> {
     return this.http.put(`${url}/${objectID}`, body, { params: params }).pipe(
-      switchMap(response => {
-        console.log(response);
-        return of(true);
-      })
+      switchMap(response => of(true))
+    );
+  }
+
+  saveWizard(url: string, body: any, params: any): Observable<null> {
+    return this.http.post(url, body, { params: params }).pipe(
+      switchMap(response => of(null))
+    );
+  }
+
+  deleteRecord(url: string, objectID: string): Observable<null> {
+    return this.http.delete(`${url}/${objectID}`).pipe(
+      switchMap(response => of(null))
     );
   }
 

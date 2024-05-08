@@ -106,28 +106,19 @@ export const viewsConfig = [
         },
         "wizard": {
             "addEquipmentList": {
-                title: 'Testing wizard',
+                title: 'Create equipment type',
                 fields: [
                     {
-                        fieldLabel: "Test text",
+                        fieldLabel: "Name",
                         fieldType: "text",
-                        fieldName: "testText"
+                        fieldName: "name"
                     },
-                    {
-                        fieldLabel: "Test number",
-                        fieldType: "number",
-                        fieldName: "testNumber"
-                    }
                 ],
                 formBuilderGroupFields: [
                     {
-                        fieldKey: 'testText',
+                        fieldKey: 'name',
                         fieldValue: ''
                     },
-                    {
-                        fieldKey: 'testNumber',
-                        fieldValue: 0
-                    }
                 ]
             }
         },
