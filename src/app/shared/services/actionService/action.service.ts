@@ -21,29 +21,6 @@ export class ActionService {
     (this as any)[functionName]().subscribe();
   }
 
-  testWizardAction() {
-    return this.wizardService.create('addEquipmentList').pipe(
-      switchMap(wizardCreated => this.wizardService.destroy()),
-      filter(wizardDestroyed => wizardDestroyed.save),
-      tap(result => {
-        console.log(result);
-      }),
-      defaultIfEmpty(null)
-    );
-  }
-
-  equListTestAction() {
-    console.log('equ list');
-  }
-
-  testYesNoAction() {
-    return this.yesNoService.run('test question').pipe(
-      switchMap(response => {
-        return of(null);
-      })
-    );
-  }
-
   createEquipmentType() {
     return this.wizardService.create('addEquipmentList').pipe(
       switchMap(() => this.wizardService.destroy()),
@@ -54,6 +31,9 @@ export class ActionService {
           wizardDestroyed.savedFields,
           {}
         );
+      }),
+      tap(() => {
+        this.viewService.refresh();
       }),
       defaultIfEmpty(null)
     );
@@ -69,6 +49,9 @@ export class ActionService {
           'http://localhost:5001/api/v1/Equipment/Types',
           String(this.viewService.objID)
         );
+      }),
+      tap(() => {
+        this.viewService.refresh();
       }),
       defaultIfEmpty(null)
     );

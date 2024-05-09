@@ -7,7 +7,7 @@ import { UserProfileComponent } from './shared/components/user-profile/user-prof
 import { EditComponent } from './shared/components/edit/edit.component';
 
 const routes: Routes = [
-  { path: '', component: MainPageComponent },
+  
   //Data grids
   { path: 'equipment-list', title: 'Equipment List', component: DataGridComponent, data: {viewID: 'equipmentList'} },
   { path: 'equipment-types-list', title: 'Equipment Types', component: DataGridComponent, data: {viewID: 'equipmentTypes'} },
@@ -22,6 +22,7 @@ const routes: Routes = [
   
 
   { path: 'user', component: UserProfileComponent },
+  { path: '', component: MainPageComponent },
   { path: '**', component: Page404Component}
 ];
 

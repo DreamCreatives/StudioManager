@@ -3,13 +3,14 @@ import { viewsConfig } from '../../config/views.json';
 import { actionsConfig } from '../../config/actions.json';
 import { DataGrid, Actions, Edit, Wizard } from '../../models/view.models';
 import { Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ViewService {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   public objID: string | null = null;
 
@@ -35,6 +36,14 @@ export class ViewService {
     const actionKey = viewID as keyof typeof actionsConfig[0];
     const actionConfig = actionsConfig[0][actionKey];
     return actionConfig;
+  }
+
+  refresh() {
+    const currentUrl = this.router.url;
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentUrl]);
+    });
+
   }
 
 }

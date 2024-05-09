@@ -3,8 +3,7 @@ import { DataTable } from 'simple-datatables';
 import { ViewService } from '../../services/viewService/view.service';
 import { ApiService } from '../../services/apiService/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap, Observable, of, tap } from 'rxjs';
-import { WizardService } from '../../services/wizardService/wizard.service';
+import { switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-data-grid',
@@ -18,7 +17,7 @@ export class DataGridComponent {
     private apiService: ApiService,
     private route: ActivatedRoute,
     private router: Router,
-) {}
+) { }
 
   public dataGridName = '';
 
