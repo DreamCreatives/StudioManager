@@ -11,14 +11,6 @@ export const actionsConfig = [
         },
         "equipmentTypes": {
             actions: [
-                // {
-                //     displayName: 'Test wizard action',
-                //     actionName: 'testWizardAction',
-                // },
-                // {
-                //     displayName: 'Test yes no action',
-                //     actionName: 'testYesNoAction',
-                // },
                 {
                     displayName: 'Create',
                     actionName: 'createEquipmentType',
@@ -26,7 +18,7 @@ export const actionsConfig = [
                 {
                     displayName: 'Delete',
                     actionName: 'deleteEquipmentType',
-                }
+                },
             ]
         },
         "printersList": {
