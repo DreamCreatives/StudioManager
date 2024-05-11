@@ -35,18 +35,29 @@ export class DataGridComponent {
           tap(response => {
             const data: (string)[][] = [];
 
-            for (const row in response) {
+            let dataHolder;
+
+            if (response.hasOwnProperty('data')) {
+              const dataKey = 'data' as keyof typeof response;
+              dataHolder = response[dataKey];
+            } else {
+              dataHolder = response;
+            }
+
+            for (const row in dataHolder) {
               const dataRow: (string )[] = [];
-              const rowKey = row as keyof typeof response;
-              
-              for (const object in response[rowKey]) {
-                const objectKey = object as keyof typeof response[typeof rowKey];
-                dataRow.push(response[rowKey][objectKey]);
+              const rowKey = row as keyof typeof dataHolder;
+
+              for (const object in dataHolder[rowKey]) {
+                if (dataGridConfig.dataGridFieldsNames.indexOf(object) > -1) {
+                  const objectKey = object as keyof typeof dataHolder[typeof rowKey];
+                  dataRow.push(dataHolder[rowKey][objectKey]);
+                }
               }
 
               data.push(dataRow);
             }
-      
+
             new DataTable('#dataGridTable', {
               data: {
                 headings: dataGridConfig.headers,

@@ -4,8 +4,12 @@ export const actionsConfig = [
         "equipmentList": {
             actions: [
                 {
-                    displayName: 'Equ lis Test action',
-                    actionName: 'equListTestAction',
+                    displayName: 'Create',
+                    actionName: 'createEquipment',
+                },
+                {
+                    displayName: 'Delete',
+                    actionName: 'deleteEquipment',
                 },
             ]
         },

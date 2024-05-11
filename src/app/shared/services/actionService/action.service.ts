@@ -22,7 +22,7 @@ export class ActionService {
   }
 
   createEquipmentType() {
-    return this.wizardService.create('addEquipmentList').pipe(
+    return this.wizardService.create('addEquipmentTypeList').pipe(
       switchMap(() => this.wizardService.destroy()),
       filter(wizardDestroyed => wizardDestroyed.save),
       switchMap(wizardDestroyed => {
@@ -47,6 +47,42 @@ export class ActionService {
       switchMap(() => {
         return this.apiService.deleteRecord(
           'http://localhost:5001/api/v1/Equipment/Types',
+          String(this.viewService.objID)
+        );
+      }),
+      tap(() => {
+        this.viewService.refresh();
+      }),
+      defaultIfEmpty(null)
+    );
+  }
+
+  createEquipment() {
+    return this.wizardService.create('addEquipmentList').pipe(
+      switchMap(() => this.wizardService.destroy()),
+      filter(wizardDestroyed => wizardDestroyed.save),
+      switchMap(wizardDestroyed => {
+        return this.apiService.saveWizard(
+          'http://localhost:5001/api/v1/Equipments',
+          wizardDestroyed.savedFields,
+          {}
+        );
+      }),
+      tap(() => {
+        this.viewService.refresh()
+      }),
+      defaultIfEmpty(null)
+    );
+  }
+
+  deleteEquipment() {
+    return of(this.viewService.objID).pipe(
+      filter(objID => objID !== null),
+      switchMap(() => this.yesNoService.run('Are you sure?')),
+      filter(response => response),
+      switchMap(() => {
+        return this.apiService.deleteRecord(
+          'http://localhost:5001/api/v1/Equipments',
           String(this.viewService.objID)
         );
       }),

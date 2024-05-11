@@ -2,6 +2,7 @@ export interface DataGrid {
     dataGridName: string;
     reroutePath: string;
     headers: string[];
+    dataGridFieldsNames: string[];
     data: (string | number)[][];
     getUrl: string;
 }
