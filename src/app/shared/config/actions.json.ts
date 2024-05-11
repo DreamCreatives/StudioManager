@@ -23,6 +23,10 @@ export const actionsConfig = [
                     displayName: 'Delete',
                     actionName: 'deleteEquipmentType',
                 },
+                {
+                    displayName: 'Test toast',
+                    actionName: 'testToast',
+                },
             ]
         },
         "printersList": {

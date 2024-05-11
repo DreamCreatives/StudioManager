@@ -11,7 +11,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^16.2.0",
+    "@angular/animations": "^16.2.12",
     "@angular/cdk": "^16.2.14",
     "@angular/common": "^16.2.0",
     "@angular/compiler": "^16.2.0",
@@ -24,6 +24,7 @@
     "@kurkle/color": "^0.3.2",
     "axios": "^1.6.8",
     "datatables.net-dt": "^2.0.6",
+    "ngx-toastr": "^18.0.0",
     "rxjs": "~7.8.0",
     "simple-datatables": "^9.0.3",
     "tslib": "^2.3.0",
