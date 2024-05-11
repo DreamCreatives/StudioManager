@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
-import { viewsConfig } from '../../config/views.json';
+import { dataGridConfig } from '../../config/views/dataGrid.json';
+import { editConfig } from '../../config/views/edit.json';
+import { wizardConfig } from '../../config/views/wizard.json';
 import { actionsConfig } from '../../config/actions.json';
 import { DataGrid, Actions, Edit, Wizard } from '../../models/view.models';
 import { Observable, of } from 'rxjs';
@@ -15,21 +17,18 @@ export class ViewService {
   public objID: string | null = null;
 
   getDataGridConfig(dataGridID: string): Observable<DataGrid> {
-    const dataGridKey = dataGridID as keyof typeof viewsConfig[0]['dataGrid'];
-    const dataGridConfig = viewsConfig[0]['dataGrid'][dataGridKey];
-    return of(dataGridConfig);
+    const dataGridKey = dataGridID as keyof typeof dataGridConfig[0];
+    return of(dataGridConfig[0][dataGridKey]);
   }
 
   getWizardConfig(wizardID: string): Observable<Wizard> {
-    const wizardKey = wizardID as keyof typeof viewsConfig[0]['wizard']
-    const wizardConfig = viewsConfig[0]['wizard'][wizardKey];
-    return of(wizardConfig);
+    const wizardKey = wizardID as keyof typeof wizardConfig[0];
+    return of(wizardConfig[0][wizardKey]);
   }
 
   getEditConfig(editID: string): Observable<Edit> {
-    const editKey = editID as keyof typeof viewsConfig[0]['edit'];
-    const editConfig = viewsConfig[0]['edit'][editKey];
-    return of(editConfig);
+    const editKey = editID as keyof typeof editConfig[0];
+    return of(editConfig[0][editKey]);
   }
 
   getActionsConfig(viewID: string): Actions {
