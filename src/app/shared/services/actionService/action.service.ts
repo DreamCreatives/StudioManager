@@ -4,6 +4,7 @@ import { YesNoService } from '../yesNoService/yes-no.service';
 import { ApiService } from '../apiService/api.service';
 import { ViewService } from '../viewService/view.service';
 import { switchMap, of, tap, filter, defaultIfEmpty } from 'rxjs';
+import { ToastService } from '../toastService/toast.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class ActionService {
     private yesNoService: YesNoService,
     private apiService: ApiService,
     private viewService: ViewService,
+    private toastService: ToastService,
   ) { }
 
   executeFunction(functionName: string) {
@@ -91,5 +93,9 @@ export class ActionService {
       }),
       defaultIfEmpty(null)
     );
+  }
+
+  testToast() {
+    return of(null).pipe(tap(() => { this.toastService.show('test', 'success') }));
   }
 }
