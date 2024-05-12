@@ -27,6 +27,8 @@ export interface Wizard {
         fieldLabel: string;
         fieldType: string;
         fieldName: string;
+        isClass: boolean;
+        classDataUrl: string;
     }[],
     formBuilderGroupFields: {
         fieldKey: string;

@@ -9,6 +9,7 @@ import { ToastService } from '../toastService/toast.service';
 import {
   a_equipment_type_create,
   a_equipment_type_delete,
+  a_equipment_create,
   a_equipment_delete
 } from 'src/app/actions/equipment';
 
@@ -34,5 +35,6 @@ export class ActionService {
   deleteEquipmentType() { return a_equipment_type_delete(this.viewService, this.apiService, this.yesNoService) }
 
   // EQUIPMENT
+  createEquipment() { return a_equipment_create(this.viewService, this.apiService, this.wizardService) }
   deleteEquipment() { return a_equipment_delete(this.viewService, this.apiService, this.yesNoService) }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of, switchMap } from 'rxjs';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Observable, of, switchMap, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,21 +20,21 @@ export class ApiService {
     )
   }
 
-  saveEdit(url: string, body: any, params: any, objectID: string): Observable<boolean> {
-    return this.http.put(`${url}/${objectID}`, body, { params: params }).pipe(
-      switchMap(response => of(true))
+  saveEdit(url: string, body: any, params: any, objectID: string): Observable<HttpResponse<Object>> {
+    return this.http.put(`${url}/${objectID}`, body, { params: params, observe: 'response' }).pipe(
+      switchMap(response => of(response))
     );
   }
 
-  saveWizard(url: string, body: any, params: any): Observable<null> {
-    return this.http.post(url, body, { params: params }).pipe(
-      switchMap(response => of(null))
+  saveWizard(url: string, body: any, params: any): Observable<HttpResponse<Object>> {
+    return this.http.post(url, body, { params: params, observe: 'response' }).pipe(
+      switchMap(response => of(response))
     );
   }
 
-  deleteRecord(url: string, objectID: string): Observable<null> {
-    return this.http.delete(`${url}/${objectID}`).pipe(
-      switchMap(response => of(null))
+  deleteRecord(url: string, objectID: string): Observable<HttpResponse<Object>> {
+    return this.http.delete(`${url}/${objectID}`, { observe: 'response' }).pipe(
+      switchMap(response => of(response))
     );
   }
 
