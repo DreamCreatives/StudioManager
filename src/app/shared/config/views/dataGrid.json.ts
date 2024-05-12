@@ -5,7 +5,7 @@ export const dataGridConfig = [
             reroutePath: 'equipment-list',
             headers: ["ID", "Name", "Quantity", "Total quantity", 'Equipment type'],
             dataGridFieldsNames: ['id', 'name', 'quantity', 'initialQuantity', 'equipmentType'],
-            data: [[1, 'test equ', ''], [2, 'test',''], [3, 'test',''], [4, 'test','']],
+            data: [],
             getUrl: 'http://localhost:5001/api/v1/Equipments'
         },
         "equipmentTypes": {
@@ -13,7 +13,7 @@ export const dataGridConfig = [
             reroutePath: 'equipment-types-list',
             headers: ["ID", "Name"],
             dataGridFieldsNames: ['id', 'name'],
-            data: [[1, 'test equ type'], [2, 'test'], [3, 'test'], [4, 'test']],
+            data: [],
             getUrl: 'http://localhost:5001/api/v1/Equipment/Types'
         },
         "printersList": {

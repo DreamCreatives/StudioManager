@@ -12,6 +12,8 @@ export interface Edit {
         fieldLabel: string;
         fieldType: string;
         fieldName: string;
+        isClass: boolean;
+        classDataUrl: string;
     }[],
     rerouteOnCancel: string;
     baseUrl: string;
