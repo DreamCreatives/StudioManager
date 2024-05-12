@@ -6,22 +6,32 @@ export const wizardConfig = [
                 {
                     fieldLabel: "Name",
                     fieldType: "text",
-                    fieldName: "name"
+                    fieldName: "name",
+                    isClass: false,
+                    classDataUrl: '',
                 },
-                // {
-                //     fieldLabel: "Equipment type",
-                //     fieldType: "text",
-                //     fieldName: "equipmentType"
-                // },
+                {
+                    fieldLabel: "Equipment type",
+                    fieldType: "text",
+                    fieldName: "equipmentTypeId",
+                    isClass: true,
+                    classDataUrl: 'http://localhost:5001/api/v1/Equipment/Types',
+                },
                 {
                     fieldLabel: "Quantity",
                     fieldType: "number",
-                    fieldName: "quantity"
+                    fieldName: "quantity",
+                    isClass: false,
+                    classDataUrl: '',
                 },
             ],
             formBuilderGroupFields: [
                 {
                     fieldKey: 'name',
+                    fieldValue: ''
+                },
+                {
+                    fieldKey: 'equipmentTypeId',
                     fieldValue: ''
                 },
                 {
@@ -36,7 +46,9 @@ export const wizardConfig = [
                 {
                     fieldLabel: "Name",
                     fieldType: "text",
-                    fieldName: "name"
+                    fieldName: "name",
+                    isClass: false,
+                    classDataUrl: '',
                 },
             ],
             formBuilderGroupFields: [

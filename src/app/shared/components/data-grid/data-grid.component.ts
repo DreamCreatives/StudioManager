@@ -51,7 +51,7 @@ export class DataGridComponent {
               for (const object in dataHolder[rowKey]) {
                 if (dataGridConfig.dataGridFieldsNames.indexOf(object) > -1) {
                   const objectKey = object as keyof typeof dataHolder[typeof rowKey];
-                  dataRow.push(dataHolder[rowKey][objectKey]);
+                  dataRow.push(this.isObject(dataHolder[rowKey][objectKey]) ? dataHolder[rowKey][objectKey]['name'] : dataHolder[rowKey][objectKey]);
                 }
               }
 
@@ -70,7 +70,7 @@ export class DataGridComponent {
 
             rows.forEach(row => {
               row.addEventListener('dblclick', () => {
-                this.rerouteToEdit(dataGridConfig['reroutePath'], row.cells[0].textContent);
+                this.redirecToEdit(dataGridConfig['reroutePath'], row.cells[0].textContent);
               });
             });
 
@@ -105,7 +105,11 @@ export class DataGridComponent {
     })
   }
 
-  rerouteToEdit(reroutePath: string, objectID: string | null): void {
+  isObject(value: any): boolean {
+    return value !== null && typeof value === 'object' && !Array.isArray(value);
+  }
+
+  redirecToEdit(reroutePath: string, objectID: string | null): void {
     if (objectID)
       this.router.navigate([reroutePath, objectID]);
   }

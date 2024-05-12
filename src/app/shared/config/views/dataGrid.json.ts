@@ -3,8 +3,8 @@ export const dataGridConfig = [
         "equipmentList": {
             dataGridName: 'Equipment list',
             reroutePath: 'equipment-list',
-            headers: ["ID", "Name", "Equipment type"],
-            dataGridFieldsNames: ['id', 'name', 'quantity'],
+            headers: ["ID", "Name", "Quantity", "Total quantity", 'Equipment type'],
+            dataGridFieldsNames: ['id', 'name', 'quantity', 'initialQuantity', 'equipmentType'],
             data: [[1, 'test equ', ''], [2, 'test',''], [3, 'test',''], [4, 'test','']],
             getUrl: 'http://localhost:5001/api/v1/Equipments'
         },
