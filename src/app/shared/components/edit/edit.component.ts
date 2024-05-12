@@ -4,8 +4,8 @@ import { ViewService } from '../../services/viewService/view.service';
 import { ApiService } from '../../services/apiService/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EditField } from '../../models/edit.models';
-import { switchMap, tap,of } from 'rxjs';
-import { HttpParams } from '@angular/common/http';
+import { switchMap, tap, of, iif, forkJoin } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-edit',
@@ -18,7 +18,8 @@ export class EditComponent {
     private apiService: ApiService,
     private route: ActivatedRoute,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private http: HttpClient,
   ) { }
 
   public editForm = this.formBuilder.group({});
@@ -37,33 +38,67 @@ export class EditComponent {
         this.rerouteOnCancel = editConfig.rerouteOnCancel;
       }),
       switchMap(editConfig => {
-        const params = new HttpParams().set('ft', String(this.objectID));
-        return this.apiService.getEditObjectByID(editConfig.baseUrl, params).pipe(
-          switchMap(response => {
-            const editFormBuilderGroup: { [key: string]: any } = {};
-            for (const formBuilderGroupField of editConfig.formBuilderGroupFields) {
-              let fieldValue = '';
+        const toReturn: {[key: string]: any;} = {};
+        for (const field of editConfig.fields) {
+          if (field.isClass) toReturn[field.fieldName] = this.http.get(field.classDataUrl);
+        }
 
-              for (const responseData in response) {
-                const responseDataKey = responseData as keyof typeof response;
-                const fieldKey = formBuilderGroupField.fieldKey as keyof typeof response[typeof responseDataKey];
+        return iif(() => Object.keys(toReturn).length !== 0, forkJoin(toReturn), of(null)).pipe(
+          switchMap(data => {
+            const params = new HttpParams().set('ft', String(this.objectID));
+            return this.apiService.getEditObjectByID(editConfig.baseUrl, params).pipe(
+              tap(response => {
+                let dataHolder;
 
-                fieldValue = response[responseDataKey][fieldKey];
-              }
+                if (response.hasOwnProperty('data')) {
+                  const dataKey = 'data' as keyof typeof response;
+                  dataHolder = response[dataKey];
+                } else {
+                  dataHolder = response;
+                }
 
-              editFormBuilderGroup[formBuilderGroupField.fieldKey] = fieldValue;
-            }
+                const editFormBuilderGroup: { [key: string]: any } = {};
+                for (const formBuilderGroupField of editConfig.formBuilderGroupFields) {
+                  let fieldValue;
+                  for (const responseData in dataHolder) {
+                    const responseDataKey = responseData as keyof typeof dataHolder;
+                    
+                    let fieldKey;
 
-            this.editForm = this.formBuilder.group(editFormBuilderGroup);
+                    if (formBuilderGroupField.fieldKey.includes('Id')) {
+                      fieldKey = formBuilderGroupField.fieldKey.slice(0, -2) as keyof typeof dataHolder[typeof responseDataKey];
+                    } else {
+                      fieldKey = formBuilderGroupField.fieldKey as keyof typeof dataHolder[typeof responseDataKey];
+                    }
+                    
+                    fieldValue = dataHolder[responseDataKey][fieldKey];
+                    fieldValue = this.isObject(fieldValue) ? fieldValue['id'] : fieldValue;
+                  }
 
-            for (const field of editConfig.fields) {
-              this.fields.push({
-                label: field.fieldLabel,
-                type: field.fieldType,
-                name: field.fieldName,
+                  editFormBuilderGroup[formBuilderGroupField.fieldKey] = fieldValue;
+                }
+
+                this.editForm = this.formBuilder.group(editFormBuilderGroup);
+
+                for (const field of editConfig.fields) {
+                  let options: {id: string, name: string, selected: boolean}[] = [];
+                  if (data !== null && data.hasOwnProperty(field.fieldName)) {
+                    for (const row of data[field.fieldName] as any) {
+                      row['selected'] = row.name === editFormBuilderGroup[field.fieldName];
+                      options.push(row);
+                    }
+                  }
+
+                  this.fields.push({
+                    label: field.fieldLabel,
+                    type: field.fieldType,
+                    name: field.fieldName,
+                    isClass: field.isClass,
+                    options: options,
+                  })
+                }
               })
-            }
-            return of(null);
+            );
           })
         );
       })
@@ -81,5 +116,7 @@ export class EditComponent {
     ).subscribe();
   }
 
-
+  isObject(value: any): boolean {
+    return value !== null && typeof value === 'object' && !Array.isArray(value);
+  }
 }

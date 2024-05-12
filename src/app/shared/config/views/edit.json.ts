@@ -5,23 +5,49 @@ export const editConfig = [
                 {
                     fieldLabel: "Equipment name",
                     fieldType: "text",
-                    fieldName: "equipmentName"
+                    fieldName: "name",
+                    isClass: false,
+                    classDataUrl: '',
                 },
                 {
-                    fieldLabel: "Type",
+                    fieldLabel: "Quantity",
+                    fieldType: "text",
+                    fieldName: "quantity",
+                    isClass: false,
+                    classDataUrl: '',
+                },
+                {
+                    fieldLabel: "Total quantity",
+                    fieldType: "text",
+                    fieldName: "initialQuantity",
+                    isClass: false,
+                    classDataUrl: '',
+                },
+                {
+                    fieldLabel: "Equipment type",
                     fieldType: "number",
-                    fieldName: "equipmentType"
+                    fieldName: "equipmentTypeId",
+                    isClass: true,
+                    classDataUrl: 'http://localhost:5001/api/v1/Equipment/Types',
                 }
             ],
             rerouteOnCancel: 'equipment-list',
-            baseUrl: '',
+            baseUrl: 'http://localhost:5001/api/v1/Equipments',
             formBuilderGroupFields: [
                 {
-                    fieldKey: 'equipmentName',
+                    fieldKey: 'name',
                     fieldValue: ''
                 },
                 {
-                    fieldKey: 'equipmentType',
+                    fieldKey: 'quantity',
+                    fieldValue: ''
+                },
+                {
+                    fieldKey: 'initialQuantity',
+                    fieldValue: ''
+                },
+                {
+                    fieldKey: 'equipmentTypeId',
                     fieldValue: ''
                 }
             ]
@@ -31,7 +57,9 @@ export const editConfig = [
                 {
                     fieldLabel: "Name",
                     fieldType: "text",
-                    fieldName: "name"
+                    fieldName: "name",
+                    isClass: false,
+                    classDataUrl: '',
                 }
             ],
             rerouteOnCancel: 'equipment-types-list',
@@ -48,12 +76,16 @@ export const editConfig = [
                 {
                     fieldLabel: "Printer name",
                     fieldType: "text",
-                    fieldName: "printerName"
+                    fieldName: "printerName",
+                    isClass: false,
+                    classDataUrl: '',
                 },
                 {
                     fieldLabel: "Type",
                     fieldType: "number",
-                    fieldName: "printerTypeName"
+                    fieldName: "printerTypeName",
+                    isClass: false,
+                    classDataUrl: '',
                 }
             ],
             rerouteOnCancel: '',
@@ -65,7 +97,9 @@ export const editConfig = [
                 {
                     fieldLabel: "Name",
                     fieldType: "text",
-                    fieldName: "stlFiletName"
+                    fieldName: "stlFiletName",
+                    isClass: false,
+                    classDataUrl: '',
                 }
             ],
             rerouteOnCancel: '',
