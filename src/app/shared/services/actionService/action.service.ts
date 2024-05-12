@@ -6,6 +6,12 @@ import { ViewService } from '../viewService/view.service';
 import { switchMap, of, tap, filter, defaultIfEmpty } from 'rxjs';
 import { ToastService } from '../toastService/toast.service';
 
+import {
+  a_equipment_type_create,
+  a_equipment_type_delete,
+  a_equipment_delete
+} from 'src/app/actions/equipment';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -23,79 +29,10 @@ export class ActionService {
     (this as any)[functionName]().subscribe();
   }
 
-  createEquipmentType() {
-    return this.wizardService.create('addEquipmentTypeList').pipe(
-      switchMap(() => this.wizardService.destroy()),
-      filter(wizardDestroyed => wizardDestroyed.save),
-      switchMap(wizardDestroyed => {
-        return this.apiService.saveWizard(
-          'http://localhost:5001/api/v1/Equipment/Types',
-          wizardDestroyed.savedFields,
-          {}
-        );
-      }),
-      tap(() => {
-        this.viewService.refresh();
-      }),
-      defaultIfEmpty(null)
-    );
-  }
+  // EQUIPMENT TYPE
+  createEquipmentType() { return a_equipment_type_create(this.viewService, this.apiService, this.wizardService) }
+  deleteEquipmentType() { return a_equipment_type_delete(this.viewService, this.apiService, this.yesNoService) }
 
-  deleteEquipmentType() {
-    return of(this.viewService.objID).pipe(
-      filter(objID => objID !== null),
-      switchMap(() => this.yesNoService.run('Are you sure?')),
-      filter(response => response),
-      switchMap(() => {
-        return this.apiService.deleteRecord(
-          'http://localhost:5001/api/v1/Equipment/Types',
-          String(this.viewService.objID)
-        );
-      }),
-      tap(() => {
-        this.viewService.refresh();
-      }),
-      defaultIfEmpty(null)
-    );
-  }
-
-  createEquipment() {
-    return this.wizardService.create('addEquipmentList').pipe(
-      switchMap(() => this.wizardService.destroy()),
-      filter(wizardDestroyed => wizardDestroyed.save),
-      switchMap(wizardDestroyed => {
-        return this.apiService.saveWizard(
-          'http://localhost:5001/api/v1/Equipments',
-          wizardDestroyed.savedFields,
-          {}
-        );
-      }),
-      tap(() => {
-        this.viewService.refresh()
-      }),
-      defaultIfEmpty(null)
-    );
-  }
-
-  deleteEquipment() {
-    return of(this.viewService.objID).pipe(
-      filter(objID => objID !== null),
-      switchMap(() => this.yesNoService.run('Are you sure?')),
-      filter(response => response),
-      switchMap(() => {
-        return this.apiService.deleteRecord(
-          'http://localhost:5001/api/v1/Equipments',
-          String(this.viewService.objID)
-        );
-      }),
-      tap(() => {
-        this.viewService.refresh();
-      }),
-      defaultIfEmpty(null)
-    );
-  }
-
-  testToast() {
-    return of(null).pipe(tap(() => { this.toastService.show('test', 'success') }));
-  }
+  // EQUIPMENT
+  deleteEquipment() { return a_equipment_delete(this.viewService, this.apiService, this.yesNoService) }
 }
