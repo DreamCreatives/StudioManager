@@ -31,6 +31,10 @@ export class WizardService {
   allowSave(condition: () => boolean): void {
     this.save = condition;
   }
+
+  getValue(fieldID: string) {
+    return this.wizardForm.get(fieldID)?.value;
+  }
   
   
   create(wizardID: string): Observable<null> {
