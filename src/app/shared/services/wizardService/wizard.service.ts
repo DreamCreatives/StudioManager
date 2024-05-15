@@ -26,6 +26,11 @@ export class WizardService {
   public savedFields = {};
   public wizardForm = this.formBuilder.group({});
   public fields: WizardField[] = [];
+  save: () => boolean = () => true;
+
+  allowSave(condition: () => boolean): void {
+    this.save = condition;
+  }
   
   
   create(wizardID: string): Observable<null> {
@@ -77,7 +82,10 @@ export class WizardService {
   destroy(): Observable<WizardDestroyed> {
     return this.buttonClick$.pipe(
       switchMap(() => {
-        this.dialog.closeAll();
+        if (this.save()) {
+          this.dialog.closeAll();
+          return of({ save: this.isSaved, savedFields: this.savedFields });
+        }
         return of({ save: this.isSaved, savedFields: this.savedFields });
       })
     );

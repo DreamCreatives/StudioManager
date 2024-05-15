@@ -32,12 +32,15 @@ export class WizardComponent {
   }
 
   save(): void {
-    this.wizardService.savedFields = this.wizardForm.value;
-    this.wizardService.isSaved = true;
-    this.wizardService.destroy();
+    if (this.wizardService.save()) {
+      this.wizardService.savedFields = this.wizardForm.value;
+      this.wizardService.isSaved = true;
+      this.wizardService.destroy();
+    }
   }
 
   cancel(): void {
+    this.wizardService.allowSave(() => {return true});
     this.wizardService.isSaved = false;
     this.wizardService.destroy();
   }
