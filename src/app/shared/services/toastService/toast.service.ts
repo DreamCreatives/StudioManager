@@ -5,10 +5,17 @@ import { ToastrService } from 'ngx-toastr';
   providedIn: 'root'
 })
 export class ToastService {
+  private lastToastTime: number | null = null;
 
   constructor(private toastr: ToastrService) { }
 
   show(message: string, toastType: string) {
+    const currentTime = Date.now();
+
+    if (this.lastToastTime && (currentTime - this.lastToastTime < 1000)) return; 
+
+    this.lastToastTime = currentTime;
+
     switch (toastType) {
       case "success": {
         this.toastr.success(message);
@@ -16,6 +23,14 @@ export class ToastService {
       }
       case "error": {
         this.toastr.error(message);
+        break;
+      }
+      case "warning": {
+        this.toastr.warning(message);
+        break;
+      }
+      case "info": {
+        this.toastr.info(message);
         break;
       }
       default: {

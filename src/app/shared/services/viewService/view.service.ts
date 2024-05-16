@@ -6,13 +6,14 @@ import { actionsConfig } from '../../config/actions.json';
 import { DataGrid, Actions, Edit, Wizard } from '../../models/view.models';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
+import { ToastService } from '../toastService/toast.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ViewService {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private toast: ToastService) { }
 
   public objID: string | null = null;
 
@@ -42,7 +43,10 @@ export class ViewService {
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate([currentUrl]);
     });
+  }
 
+  showToast(message: string, toastType: string) {
+    this.toast.show(message, toastType);
   }
 
 }

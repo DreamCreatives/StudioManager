@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable, of, switchMap, tap } from 'rxjs';
+import { ViewService } from '../viewService/view.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private viewService: ViewService) { }
 
 
   getDataGridData(url: string) {

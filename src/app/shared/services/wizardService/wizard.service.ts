@@ -26,7 +26,8 @@ export class WizardService {
   public savedFields = {};
   public wizardForm = this.formBuilder.group({});
   public fields: WizardField[] = [];
-  save: () => boolean = () => true;
+  
+  save: () => boolean = () => false;
 
   allowSave(condition: () => boolean): void {
     this.save = condition;
