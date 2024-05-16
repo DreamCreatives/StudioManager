@@ -7,9 +7,11 @@ export function a_equipment_type_create(vs: ViewService, apis: ApiService, ws: W
   return ws.create('addEquipmentTypeList').pipe(
     tap(() => {
       ws.allowSave(() => {
-        console.log(ws.getValue('name'));
-        // console.log('1');
-        return false;
+        if (ws.getValue('name') === '') {
+          vs.showToast('Fill field Name', 'warning');
+          return false;
+        }
+        return true;
       })
     }),
     switchMap(() => ws.destroy()),

@@ -5,6 +5,21 @@ import { switchMap, filter, tap, defaultIfEmpty } from "rxjs";
 
 export function a_equipment_create(vs: ViewService, apis: ApiService, ws: WizardService) {
   return ws.create('addEquipmentList').pipe(
+    tap(() => {
+      ws.allowSave(() => {
+        if (ws.getValue('name') === '') {
+          vs.showToast('Fill field Name', 'warning');
+          return false;
+        } else if(ws.getValue('quantity') === '') {
+          vs.showToast('Fill field Quantity', 'warning');
+          return false;
+        } else if(ws.getValue('equipmentTypeId') === '') {
+          vs.showToast('Fill field Equipment Type', 'warning');
+          return false;
+        }
+        return true;
+      })
+    }),
     switchMap(() => ws.destroy()),
     filter(wizardDestroyed => wizardDestroyed.save),
     switchMap(wizardDestroyed => apis.saveWizard(
