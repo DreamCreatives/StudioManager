@@ -60,5 +60,10 @@ export const actionsConfig = [
             ]
         },
         //Wizards
+        //Calendars
+        "equipmentReservationsCalendar": {
+            actions: [
+            ]
+        }
     }
 ]

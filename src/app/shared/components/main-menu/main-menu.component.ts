@@ -13,13 +13,13 @@ export class MainMenuComponent implements OnInit {
   public podcastMenus: MainMenuPosition[] = [];
   public printersMenus: MainMenuPosition[] = [];
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.equipmentMenus = this.getMenusByCategoryName('equipment');
     this.podcastMenus = this.getMenusByCategoryName('podcast');
     this.printersMenus = this.getMenusByCategoryName('printers')
   }
 
-  getMenusByCategoryName(categoryName: string) {
+  getMenusByCategoryName(categoryName: string): MainMenuPosition[] {
     let categoryMenuPositions: MainMenuPosition[] = [];
     const categoryKey = categoryName as keyof typeof menusConfig[0];
 

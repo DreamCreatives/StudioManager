@@ -3,6 +3,7 @@ import { ViewService } from '../../services/viewService/view.service';
 import { ActionService } from '../../services/actionService/action.service';
 import { ActivatedRoute } from '@angular/router';
 import { Action } from '../../models/view.models';
+import { switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-action-bar',
@@ -20,17 +21,15 @@ export class ActionBarComponent {
   public actionsList: Action[] = [];
   private viewID = '';
 
-  ngOnInit() {
-    this.route.data.subscribe(view => {
-      this.viewID = view['viewID'];
-    });
-
-    const actionsConfig = this.viewService.getActionsConfig(this.viewID);
-    
-    this.actionsList = actionsConfig.actions;
+  ngOnInit(): void {
+    this.route.data.pipe(
+      tap(view => { this.viewID = view['viewID'] }),
+      switchMap(view => this.viewService.getActionsConfig(view['viewID'])),
+      tap(actionsConfig => { this.actionsList = actionsConfig.actions })
+    ).subscribe();
   }
 
-  executeFunction(functionName: string) {
+  executeFunction(functionName: string): void {
     this.actionService.executeFunction(functionName);
   }
 }
