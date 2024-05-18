@@ -9,7 +9,7 @@ export class ToastService {
 
   constructor(private toastr: ToastrService) { }
 
-  show(message: string, toastType: string) {
+  show(message: string, toastType: string): void {
     const currentTime = Date.now();
 
     if (this.lastToastTime && (currentTime - this.lastToastTime < 1000)) return; 

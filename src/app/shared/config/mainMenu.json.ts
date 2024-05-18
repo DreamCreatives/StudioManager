@@ -3,7 +3,7 @@ export const menusConfig = [
         "equipment": {
             "Equipment list": "equipment-list",
             "Equipment types": "equipment-types-list",
-            "Equipment reservations": ""
+            "Equipment reservations": "equipment-reservations-calendar"
         },
         "podcast": {
             "Topics": "",

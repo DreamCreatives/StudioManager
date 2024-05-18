@@ -71,6 +71,25 @@ export const editConfig = [
                 },
             ]
         },
+        "equipmentReservationDetail": {
+            fields: [
+                {
+                    fieldLabel: "Name",
+                    fieldType: "text",
+                    fieldName: "name",
+                    isClass: false,
+                    classDataUrl: '',
+                }
+            ],
+            rerouteOnCancel: 'equipment-types-list',
+            baseUrl: 'http://localhost:5001/api/v1/Equipment/Types',
+            formBuilderGroupFields: [
+                {
+                    fieldKey: 'name',
+                    fieldValue: ''
+                },
+            ]
+        },
         "printerDetail": {
             fields: [
                 {

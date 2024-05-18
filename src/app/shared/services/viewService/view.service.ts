@@ -32,20 +32,19 @@ export class ViewService {
     return of(editConfig[0][editKey]);
   }
 
-  getActionsConfig(viewID: string): Actions {
+  getActionsConfig(viewID: string): Observable<Actions> {
     const actionKey = viewID as keyof typeof actionsConfig[0];
-    const actionConfig = actionsConfig[0][actionKey];
-    return actionConfig;
+    return of(actionsConfig[0][actionKey]);
   }
 
-  refresh() {
+  refresh(): void {
     const currentUrl = this.router.url;
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate([currentUrl]);
     });
   }
 
-  showToast(message: string, toastType: string) {
+  showToast(message: string, toastType: string): void {
     this.toast.show(message, toastType);
   }
 

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -18,6 +18,8 @@ import { EditComponent } from './shared/components/edit/edit.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ToastrModule } from 'ngx-toastr';
+import { CalendarComponent } from './shared/components/calendar/calendar.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { ToastrModule } from 'ngx-toastr';
     WizardComponent,
     YesNoComponent,
     ActionBarComponent,
-    EditComponent
+    EditComponent,
+    CalendarComponent
   ],
   imports: [
     AppRoutingModule,
@@ -41,11 +44,13 @@ import { ToastrModule } from 'ngx-toastr';
     NoopAnimationsModule,
     MatDialogModule,
     BrowserAnimationsModule,
+    FullCalendarModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-bottom-left'
     }),
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     { provide: MAT_DIALOG_DATA, useValue: {} },
     { provide: MatDialogRef, useValue: {} }

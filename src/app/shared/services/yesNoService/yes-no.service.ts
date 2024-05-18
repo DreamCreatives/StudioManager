@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ViewService } from '../viewService/view.service';
 import { MatDialog } from '@angular/material/dialog';
-import { fromEvent, Observable, switchMap, of } from 'rxjs';
+import { fromEvent, Observable, switchMap, of, tap } from 'rxjs';
 import { YesNoComponent } from '../../components/yes-no/yes-no.component';
 
 @Injectable({
@@ -24,10 +24,8 @@ export class YesNoService {
       disableClose: true,
     });
     return this.buttonClicks$.pipe(
-      switchMap(() => {
-        this.dialog.closeAll();
-        return of(this.isSaved);
-      })
+      tap(() => { this.dialog.closeAll() }),
+      switchMap(() => of(this.isSaved))
     );
   }
 }

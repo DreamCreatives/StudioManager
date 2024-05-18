@@ -11,11 +11,13 @@ export class ApiService {
   constructor(private http: HttpClient, private viewService: ViewService) { }
 
 
-  getDataGridData(url: string) {
-    return this.http.get(url);
+  getDataGridData(url: string): Observable<Object> {
+    return this.http.get(url).pipe(
+      switchMap(response => of(response))
+    )
   }
 
-  getEditObjectByID(url: string, params: any) {
+  getEditObjectByID(url: string, params: any): Observable<Object> {
     return this.http.get(url, { params: params }).pipe(
       switchMap(response => of(response))
     )
