@@ -20,6 +20,7 @@ import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/materia
 import { ToastrModule } from 'ngx-toastr';
 import { CalendarComponent } from './shared/components/calendar/calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { LoginComponent } from './shared/components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     YesNoComponent,
     ActionBarComponent,
     EditComponent,
-    CalendarComponent
+    CalendarComponent,
+    LoginComponent
   ],
   imports: [
     AppRoutingModule,

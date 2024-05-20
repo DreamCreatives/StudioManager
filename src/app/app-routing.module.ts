@@ -6,6 +6,7 @@ import { MainPageComponent } from './shared/components/main-page/main-page.compo
 import { UserProfileComponent } from './shared/components/user-profile/user-profile.component';
 import { EditComponent } from './shared/components/edit/edit.component';
 import { CalendarComponent } from './shared/components/calendar/calendar.component';
+import { LoginComponent } from './shared/components/login/login.component';
 
 const routes: Routes = [
   
@@ -25,6 +26,7 @@ const routes: Routes = [
   
 
   { path: 'user', component: UserProfileComponent },
+  { path: 'login', component: LoginComponent },
   { path: '', component: MainPageComponent },
   { path: '**', component: Page404Component}
 ];
