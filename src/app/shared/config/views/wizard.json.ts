@@ -1,3 +1,5 @@
+import { CID } from "../constants.json"
+
 export const wizardConfig = [
     {
         "addEquipmentList": {
@@ -15,7 +17,7 @@ export const wizardConfig = [
                     fieldType: "text",
                     fieldName: "equipmentTypeId",
                     isClass: true,
-                    classDataUrl: 'http://localhost:5001/api/v1/Equipment/Types',
+                    classDataUrl: CID.EQUIPMENT_TYPE,
                 },
                 {
                     fieldLabel: "Quantity",

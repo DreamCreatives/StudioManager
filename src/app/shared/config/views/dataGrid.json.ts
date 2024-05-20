@@ -1,3 +1,5 @@
+import { CID } from "../constants.json"
+
 export const dataGridConfig = [
     {
         "equipmentList": {
@@ -6,7 +8,7 @@ export const dataGridConfig = [
             headers: ["ID", "Name", "Quantity", "Total quantity", 'Equipment type'],
             dataGridFieldsNames: ['id', 'name', 'quantity', 'initialQuantity', 'equipmentType'],
             data: [],
-            getUrl: 'http://localhost:5001/api/v1/Equipments'
+            getUrl: CID.EQUIPMENT,
         },
         "equipmentTypes": {
             dataGridName: 'Equipment types',
@@ -14,7 +16,7 @@ export const dataGridConfig = [
             headers: ["ID", "Name"],
             dataGridFieldsNames: ['id', 'name'],
             data: [],
-            getUrl: 'http://localhost:5001/api/v1/Equipment/Types'
+            getUrl: CID.EQUIPMENT_TYPE
         },
         "printersList": {
             dataGridName: 'Printers list',

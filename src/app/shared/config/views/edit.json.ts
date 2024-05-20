@@ -1,3 +1,5 @@
+import { CID } from "../constants.json"
+
 export const editConfig = [
     {
         "equipmentDetail": {
@@ -28,11 +30,11 @@ export const editConfig = [
                     fieldType: "number",
                     fieldName: "equipmentTypeId",
                     isClass: true,
-                    classDataUrl: 'http://localhost:5001/api/v1/Equipment/Types',
+                    classDataUrl: CID.EQUIPMENT_TYPE,
                 }
             ],
             rerouteOnCancel: 'equipment-list',
-            baseUrl: 'http://localhost:5001/api/v1/Equipments',
+            baseUrl: CID.EQUIPMENT,
             formBuilderGroupFields: [
                 {
                     fieldKey: 'name',
@@ -63,7 +65,7 @@ export const editConfig = [
                 }
             ],
             rerouteOnCancel: 'equipment-types-list',
-            baseUrl: 'http://localhost:5001/api/v1/Equipment/Types',
+            baseUrl: CID.EQUIPMENT_TYPE,
             formBuilderGroupFields: [
                 {
                     fieldKey: 'name',
@@ -82,7 +84,7 @@ export const editConfig = [
                 }
             ],
             rerouteOnCancel: 'equipment-types-list',
-            baseUrl: 'http://localhost:5001/api/v1/Equipment/Types',
+            baseUrl: CID.EQUIPMENT_TYPE,
             formBuilderGroupFields: [
                 {
                     fieldKey: 'name',
