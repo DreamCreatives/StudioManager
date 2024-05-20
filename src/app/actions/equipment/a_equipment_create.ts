@@ -2,6 +2,7 @@ import { ApiService } from "src/app/shared/services/apiService/api.service";
 import { ViewService } from "src/app/shared/services/viewService/view.service";
 import { WizardService } from "src/app/shared/services/wizardService/wizard.service";
 import { switchMap, filter, tap, defaultIfEmpty } from "rxjs";
+import { CID } from "src/app/shared/config/constants.json";
 
 export function a_equipment_create(vs: ViewService, apis: ApiService, ws: WizardService) {
   return ws.create('addEquipmentList').pipe(
@@ -22,8 +23,8 @@ export function a_equipment_create(vs: ViewService, apis: ApiService, ws: Wizard
     }),
     switchMap(() => ws.destroy()),
     filter(wizardDestroyed => wizardDestroyed.save),
-    switchMap(wizardDestroyed => apis.saveWizard(
-        'http://localhost:5001/api/v1/Equipments',
+    switchMap(wizardDestroyed => apis.saveRecord(
+        CID.EQUIPMENT,
         wizardDestroyed.savedFields,
         {}
       )

@@ -2,6 +2,7 @@ import { ViewService } from "src/app/shared/services/viewService/view.service";
 import { WizardService } from "src/app/shared/services/wizardService/wizard.service";
 import { ApiService } from "src/app/shared/services/apiService/api.service";
 import { switchMap, filter, tap, defaultIfEmpty } from "rxjs";
+import { CID } from "src/app/shared/config/constants.json";
 
 export function a_equipment_type_create(vs: ViewService, apis: ApiService, ws: WizardService) {
   return ws.create('addEquipmentTypeList').pipe(
@@ -17,8 +18,8 @@ export function a_equipment_type_create(vs: ViewService, apis: ApiService, ws: W
     switchMap(() => ws.destroy()),
     filter(wizardDestroyed => wizardDestroyed.save),
     switchMap(wizardDestroyed => {
-      return apis.saveWizard(
-        'http://localhost:5001/api/v1/Equipment/Types',
+      return apis.saveRecord(
+        CID.EQUIPMENT_TYPE,
         wizardDestroyed.savedFields,
         {}
       );

@@ -111,7 +111,7 @@ export class EditComponent {
 
   onSubmit(): void {
     const params = {};
-    this.apiService.saveEdit(this.baseUrl, this.editForm.value, params, String(this.objectID)).pipe(
+    this.apiService.saveRecord(this.baseUrl, this.editForm.value, params, String(this.objectID)).pipe(
       tap(() => this.router.navigate([this.rerouteOnCancel]))
     ).subscribe();
   }
