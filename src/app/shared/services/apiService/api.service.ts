@@ -23,13 +23,11 @@ export class ApiService {
     )
   }
 
-  saveEdit(url: string, body: any, params: any, objectID: string): Observable<HttpResponse<Object>> {
-    return this.http.put(`${url}/${objectID}`, body, { params: params, observe: 'response' }).pipe(
-      switchMap(response => of(response))
-    );
-  }
-
-  saveWizard(url: string, body: any, params: any): Observable<HttpResponse<Object>> {
+  saveRecord(url: string, body: any, params: any, objectID?: string): Observable<HttpResponse<Object>> {
+    if (objectID !== undefined) 
+      return this.http.put(`${url}/${objectID}`, body, { params: params, observe: 'response' }).pipe(
+        switchMap(response => of(response))
+      );
     return this.http.post(url, body, { params: params, observe: 'response' }).pipe(
       switchMap(response => of(response))
     );
