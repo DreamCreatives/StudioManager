@@ -59,6 +59,25 @@ export const wizardConfig = [
                     fieldValue: ''
                 },
             ]
+        },
+        "test": {
+            title: 'Create quantity type',
+            fields: [
+                {
+                    fieldLabel: "Quantity",
+                    fieldType: "number",
+                    fieldName: "quantity",
+                    isClass: false,
+                    classDataUrl: '',
+                },
+            ],
+            formBuilderGroupFields: [
+                {
+                    fieldKey: 'quantity',
+                    fieldValue: ''
+                },
+            ]
         }
+
     }
 ]

@@ -11,6 +11,10 @@ export const actionsConfig = [
                     displayName: 'Delete',
                     actionName: 'deleteEquipment',
                 },
+                {
+                    displayName: 'Add quantity',
+                    actionName: 'addQuantityEquipment',
+                },
             ]
         },
         "equipmentTypes": {
