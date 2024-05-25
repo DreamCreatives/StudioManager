@@ -10,7 +10,8 @@ import {
   a_equipment_type_create,
   a_equipment_type_delete,
   a_equipment_create,
-  a_equipment_delete
+  a_equipment_delete,
+  a_equipment_add_quantity
 } from 'src/app/actions/equipment';
 
 @Injectable({
@@ -33,8 +34,9 @@ export class ActionService {
   // EQUIPMENT TYPE
   createEquipmentType() { return a_equipment_type_create(this.viewService, this.apiService, this.wizardService) }
   deleteEquipmentType() { return a_equipment_type_delete(this.viewService, this.apiService, this.yesNoService) }
-
+  
   // EQUIPMENT
   createEquipment() { return a_equipment_create(this.viewService, this.apiService, this.wizardService) }
   deleteEquipment() { return a_equipment_delete(this.viewService, this.apiService, this.yesNoService) }
+  addQuantityEquipment() { return a_equipment_add_quantity(this.viewService, this.apiService, this.wizardService) }
 }
