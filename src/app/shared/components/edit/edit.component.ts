@@ -45,7 +45,7 @@ export class EditComponent {
 
         return iif(() => Object.keys(toReturn).length !== 0, forkJoin(toReturn), of(null)).pipe(
           switchMap(data => {
-            const params = new HttpParams().set('ft', String(this.objectID));
+            const params = new HttpParams().set('id', String(this.objectID));
             return this.apiService.getEditObjectByID(editConfig.baseUrl, params).pipe(
               tap(response => {
                 let dataHolder;

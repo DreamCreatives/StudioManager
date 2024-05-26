@@ -1,4 +1,4 @@
-import { CID } from "../constants.json"
+import { CID, DROPDOWNS } from "../constants.json"
 
 export const editConfig = [
     {
@@ -30,7 +30,7 @@ export const editConfig = [
                     fieldType: "number",
                     fieldName: "equipmentTypeId",
                     isClass: true,
-                    classDataUrl: CID.EQUIPMENT_TYPE,
+                    classDataUrl: DROPDOWNS.EQUIPMENT_TYPE,
                 }
             ],
             rerouteOnCancel: 'equipment-list',
@@ -76,20 +76,53 @@ export const editConfig = [
         "equipmentReservationDetail": {
             fields: [
                 {
-                    fieldLabel: "Name",
+                    fieldLabel: "Equipment",
                     fieldType: "text",
-                    fieldName: "name",
+                    fieldName: "equipmentId",
+                    isClass: true,
+                    classDataUrl: DROPDOWNS.EQUIPMENT,
+                },
+                {
+                    fieldLabel: "Start date",
+                    fieldType: "date",
+                    fieldName: "startDate",
+                    isClass: false,
+                    classDataUrl: '',
+                },
+                {
+                    fieldLabel: "End date",
+                    fieldType: "date",
+                    fieldName: "endDate",
+                    isClass: false,
+                    classDataUrl: '',
+                },
+                {
+                    fieldLabel: "Quantity",
+                    fieldType: "number",
+                    fieldName: "quantity",
                     isClass: false,
                     classDataUrl: '',
                 }
             ],
-            rerouteOnCancel: 'equipment-types-list',
-            baseUrl: CID.EQUIPMENT_TYPE,
+            rerouteOnCancel: 'equipment-reservations-calendar',
+            baseUrl: CID.EQUIPMENT_RESERVATION,
             formBuilderGroupFields: [
                 {
-                    fieldKey: 'name',
-                    fieldValue: ''
+                    fieldKey: "equipmentId",
+                    fieldValue: ""
                 },
+                {
+                    fieldKey: "startDate",
+                    fieldValue: ""
+                },
+                {
+                    fieldKey: "endDate",
+                    fieldValue: ""
+                },
+                {
+                    fieldKey: "quantity",
+                    fieldValue: ""
+                }
             ]
         },
         "printerDetail": {

@@ -11,19 +11,20 @@ import { LoginComponent } from './shared/components/login/login.component';
 const routes: Routes = [
   
   //Data grids
-  { path: 'equipment-list', title: 'Equipment List', component: DataGridComponent, data: {viewID: 'equipmentList'} },
-  { path: 'equipment-types-list', title: 'Equipment Types', component: DataGridComponent, data: {viewID: 'equipmentTypes'} },
-  { path: 'equipment-reservations-calendar', title: 'Equipment Reservations', component: CalendarComponent, data: {viewID: 'equipmentReservationsCalendar'} },
-  { path: 'printers-list', title: 'Printers List', component: DataGridComponent, data: {viewID: 'printersList'} },
-  { path: 'stl-files-list', title: 'STL Files List', component: DataGridComponent, data: {viewID: 'stlFilesList'} },
+  { path: 'equipment-list', title: 'Equipment List', component: DataGridComponent, data: { viewID: 'equipmentList' } },
+  { path: 'equipment-types-list', title: 'Equipment Types', component: DataGridComponent, data: { viewID: 'equipmentTypes' } },
+  { path: 'printers-list', title: 'Printers List', component: DataGridComponent, data: { viewID: 'printersList' } },
+  { path: 'stl-files-list', title: 'STL Files List', component: DataGridComponent, data: { viewID: 'stlFilesList' } },
 
   //Edits
-  { path: 'equipment-list/:id', title: 'Equipment details', component: EditComponent, data: {viewID: 'equipmentDetail'} },
-  { path: 'equipment-types-list/:id', title: 'Equipment Type details', component: EditComponent, data: {viewID: 'equipmentTypeDetail'} },
-  { path: 'equipment-reservations-calendar/:id', title: 'Equipment Reservation details', component: EditComponent, data: {viewID: 'equipmentReservationDetail'} },
-  { path: 'printers-list/:id', title: 'Printer details', component: EditComponent, data: {viewID: 'printerDetail'} },
-  { path: 'stl-files-list/:id', title: 'STL File details', component: EditComponent, data: {viewID: 'stlFileDetail'} },
-  
+  { path: 'equipment-list/:id', title: 'Equipment details', component: EditComponent, data: { viewID: 'equipmentDetail' } },
+  { path: 'equipment-types-list/:id', title: 'Equipment Type details', component: EditComponent, data: {viewID: 'equipmentTypeDetail' } },
+  { path: 'equipment-reservations-calendar/:id', title: 'Equipment Reservation details', component: EditComponent, data: { viewID: 'equipmentReservationDetail' } },
+  { path: 'printers-list/:id', title: 'Printer details', component: EditComponent, data: { viewID: 'printerDetail' } },
+  { path: 'stl-files-list/:id', title: 'STL File details', component: EditComponent, data: { viewID: 'stlFileDetail' } },
+
+  //Calendars
+  { path: 'equipment-reservations-calendar', title: 'Equipment Reservations', component: CalendarComponent, data: { viewID: 'equipmentReservationsCalendar' } },
 
   { path: 'user', component: UserProfileComponent },
   { path: 'login', component: LoginComponent },
