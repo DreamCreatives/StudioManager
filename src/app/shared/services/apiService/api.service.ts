@@ -8,7 +8,7 @@ import { ViewService } from '../viewService/view.service';
 })
 export class ApiService {
 
-  constructor(private http: HttpClient, private viewService: ViewService) { }
+  constructor(private http: HttpClient) { }
 
 
   getDataGridData(url: string): Observable<Object> {
@@ -18,6 +18,12 @@ export class ApiService {
   }
 
   getEditObjectByID(url: string, params: any): Observable<Object> {
+    return this.http.get(url, { params: params }).pipe(
+      switchMap(response => of(response))
+    )
+  }
+
+  getCalendarDataByDate(url: string, params:any): Observable<Object> {
     return this.http.get(url, { params: params }).pipe(
       switchMap(response => of(response))
     )

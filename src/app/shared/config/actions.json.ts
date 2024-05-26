@@ -46,6 +46,11 @@ export const actionsConfig = [
 
             ]
         },
+        "equipmentReservationDetail": {
+            actions: [
+
+            ]
+        },
         "printerDetail": {
             actions: [
 
@@ -63,6 +68,14 @@ export const actionsConfig = [
         //Calendars
         "equipmentReservationsCalendar": {
             actions: [
+                {
+                    displayName: 'Create',
+                    actionName: 'createEquipmentReservation',
+                },
+                {
+                    displayName: 'Delete',
+                    actionName: 'deleteEquipmentReservation',
+                },
             ]
         }
     }

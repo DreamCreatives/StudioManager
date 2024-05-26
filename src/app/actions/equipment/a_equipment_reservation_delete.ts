@@ -4,14 +4,14 @@ import { YesNoService } from "src/app/shared/services/yesNoService/yes-no.servic
 import { of, filter, defaultIfEmpty, switchMap, tap } from "rxjs";
 import { CID } from "src/app/shared/config/constants.json";
 
-export function a_equipment_delete(vs: ViewService, apis: ApiService, yesnos: YesNoService) {
+export function a_equipment_reservation_delete(vs: ViewService, apis: ApiService, yesnos: YesNoService) {
   return of(vs.objID).pipe(
     filter(objID => objID !== null),
     switchMap(() => yesnos.run('Are you sure?')),
     filter(response => response),
     switchMap(() => {
       return apis.deleteRecord(
-        CID.EQUIPMENT,
+        CID.EQUIPMENT_RESERVATION,
         String(vs.objID)
       );
     }),

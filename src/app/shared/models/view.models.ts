@@ -38,6 +38,12 @@ export interface Wizard {
     }[]
 }
 
+export interface Calendar {
+    calendarName: string;
+    reroutePath: string;
+    getUrl: string;
+}
+
 export interface Actions {
     actions: {
         displayName: string;
