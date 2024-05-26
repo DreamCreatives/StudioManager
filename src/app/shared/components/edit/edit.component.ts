@@ -46,34 +46,22 @@ export class EditComponent {
         return iif(() => Object.keys(toReturn).length !== 0, forkJoin(toReturn), of(null)).pipe(
           switchMap(data => {
             const params = new HttpParams().set('id', String(this.objectID));
-            return this.apiService.getEditObjectByID(editConfig.baseUrl, params).pipe(
+            return this.apiService.getEditObjectByID(editConfig.baseUrl, params, String(this.objectID)).pipe(
               tap(response => {
-                let dataHolder;
-
-                if (response.hasOwnProperty('data')) {
-                  const dataKey = 'data' as keyof typeof response;
-                  dataHolder = response[dataKey];
-                } else {
-                  dataHolder = response;
-                }
-
                 const editFormBuilderGroup: { [key: string]: any } = {};
-                for (const formBuilderGroupField of editConfig.formBuilderGroupFields) {
-                  let fieldValue;
-                  for (const responseData in dataHolder) {
-                    const responseDataKey = responseData as keyof typeof dataHolder;
-                    
-                    let fieldKey;
 
-                    if (formBuilderGroupField.fieldKey.includes('Id')) {
-                      fieldKey = formBuilderGroupField.fieldKey.slice(0, -2) as keyof typeof dataHolder[typeof responseDataKey];
-                    } else {
-                      fieldKey = formBuilderGroupField.fieldKey as keyof typeof dataHolder[typeof responseDataKey];
-                    }
-                    
-                    fieldValue = dataHolder[responseDataKey][fieldKey];
-                    fieldValue = this.isObject(fieldValue) ? fieldValue['id'] : fieldValue;
+                for (const formBuilderGroupField of editConfig.formBuilderGroupFields) {
+                  let fieldValue: any;
+                  let fieldKey: keyof typeof response;
+
+                  if (formBuilderGroupField.fieldKey.includes('Id')) {
+                    fieldKey = formBuilderGroupField.fieldKey.slice(0, -2) as keyof typeof response;
+                  } else {
+                    fieldKey = formBuilderGroupField.fieldKey as keyof typeof response;
                   }
+
+                  fieldValue = response[fieldKey];
+                  fieldValue = this.isObject(fieldValue) ? fieldValue['id'] : fieldValue;
 
                   editFormBuilderGroup[formBuilderGroupField.fieldKey] = fieldValue;
                 }
