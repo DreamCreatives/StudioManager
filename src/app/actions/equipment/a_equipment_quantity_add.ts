@@ -24,19 +24,18 @@ export function a_equipment_add_quantity(vs: ViewService, apis: ApiService, ws: 
     switchMap(wizardDestroyed => {
       const params = new HttpParams();
       return apis.getEditObjectByID(CID.EQUIPMENT, params, String(vs.objID)).pipe(
-        switchMap(response => {
-          return apis.saveRecord(
-            CID.EQUIPMENT,
-            response as Equipment,
-            new HttpParams,
-            String(vs.objID)
-         )
-        })
-      );
-    }),
+        switchMap(response => 
+          apis.saveRecord(  
+            CID.EQUIPMENT,  
+            response as Equipment,  
+            new HttpParams,  
+            String(vs.objID)  
+          )  
+        )  
+        )
+          })
+      
     tap(() => {
       vs.refresh();
     }),
     defaultIfEmpty(null)
-  );
-}
