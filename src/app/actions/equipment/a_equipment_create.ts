@@ -3,6 +3,8 @@ import { ViewService } from "src/app/shared/services/viewService/view.service";
 import { WizardService } from "src/app/shared/services/wizardService/wizard.service";
 import { switchMap, filter, tap, defaultIfEmpty } from "rxjs";
 import { CID } from "src/app/shared/config/constants.json";
+import { Equipment } from "src/app/shared/models/apiService.model";
+import { HttpParams } from "@angular/common/http";
 
 export function a_equipment_create(vs: ViewService, apis: ApiService, ws: WizardService) {
   return ws.create('addEquipmentList').pipe(
@@ -23,10 +25,11 @@ export function a_equipment_create(vs: ViewService, apis: ApiService, ws: Wizard
     }),
     switchMap(() => ws.destroy()),
     filter(wizardDestroyed => wizardDestroyed.save),
-    switchMap(wizardDestroyed => apis.saveRecord(
+    switchMap(wizardDestroyed => 
+      apis.saveRecord(
         CID.EQUIPMENT,
-        wizardDestroyed.savedFields,
-        {}
+        wizardDestroyed.savedFields as Equipment,
+        new HttpParams
       )
     ),
     tap(() => {
