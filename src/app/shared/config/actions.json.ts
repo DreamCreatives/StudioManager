@@ -11,6 +11,10 @@ export const actionsConfig = [
                     displayName: 'Delete',
                     actionName: 'deleteEquipment',
                 },
+                {
+                    displayName: 'Add quantity',
+                    actionName: 'addQuantityEquipment',
+                },
             ]
         },
         "equipmentTypes": {
@@ -27,33 +31,23 @@ export const actionsConfig = [
         },
         "printersList": {
             actions: [
-
             ]
         },
         "stlFilesList": {
             actions: [
-
             ]
         },
         //Edits
         "equipmentDetail": {
             actions: [
-
             ]
         },
         "equipmentTypeDetail": {
             actions: [
-
-            ]
-        },
-        "equipmentReservationDetail": {
-            actions: [
-
             ]
         },
         "printerDetail": {
             actions: [
-
             ]
         },
         "stlFileDetail": {
@@ -68,14 +62,6 @@ export const actionsConfig = [
         //Calendars
         "equipmentReservationsCalendar": {
             actions: [
-                {
-                    displayName: 'Create',
-                    actionName: 'createEquipmentReservation',
-                },
-                {
-                    displayName: 'Delete',
-                    actionName: 'deleteEquipmentReservation',
-                },
             ]
         }
     }
