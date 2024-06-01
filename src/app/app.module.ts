@@ -21,6 +21,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { CalendarComponent } from './shared/components/calendar/calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { LoginComponent } from './shared/components/login/login.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { LoginComponent } from './shared/components/login/login.component';
     ActionBarComponent,
     EditComponent,
     CalendarComponent,
-    LoginComponent
+    LoginComponent,
+    AdminComponent
   ],
   imports: [
     AppRoutingModule,
