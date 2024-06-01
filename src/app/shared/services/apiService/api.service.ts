@@ -56,6 +56,8 @@ export class ApiService {
     params: HttpParams,
     objectID?: string
   ): Observable<HttpResponseType | null> {
+    console.log(objectID)
+    console.log(body);
     if (objectID !== undefined) 
       return this.http.put(`${url}/${objectID}`, body, { params: params, observe: 'response' }).pipe(
         tap(response => {
