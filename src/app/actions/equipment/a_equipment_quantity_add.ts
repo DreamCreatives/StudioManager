@@ -9,10 +9,8 @@ import { Equipment } from "src/app/shared/models/apiService.model";
 export function a_equipment_add_quantity(vs: ViewService, apis: ApiService, ws: WizardService) {
   return of(vs.objID).pipe(
     filter(objID => objID !== null),
-    switchMap(() => {
-      return ws.create('addQuantity')
-    }),
-   tap(() => {
+    switchMap(() => { return ws.create('addQuantity');}),
+    tap(() => {
     ws.allowSave(() => {
       if (ws.getValue('quantity') === '') {
         vs.showToast('Quantity is reqired', 'warning');
@@ -27,16 +25,14 @@ export function a_equipment_add_quantity(vs: ViewService, apis: ApiService, ws: 
       const params = new HttpParams();
       return apis.getEditObjectByID(CID.EQUIPMENT, params, String(vs.objID)).pipe(
         switchMap(response => {
-          console.log(response);
           return apis.saveRecord(
           CID.EQUIPMENT,
           response as Equipment,
           new HttpParams,
-          String(vs.objID)
-          )
-          
+            String(vs.objID)
+            )
         })
-      );
+        );
     }),
     tap(() => {
       vs.refresh();
@@ -44,11 +40,4 @@ export function a_equipment_add_quantity(vs: ViewService, apis: ApiService, ws: 
     defaultIfEmpty(null)
     
   );
-
-  
-  // switchMap(wizardDestroyed => apis.saveRecord(
-  //     CID.EQUIPMENT,
-  //     wizardDestroyed.savedFields  ,
-  //      new HttpParams
-  // ) ),  
 }
