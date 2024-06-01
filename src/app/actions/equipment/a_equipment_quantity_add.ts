@@ -9,7 +9,7 @@ import { Equipment } from "src/app/shared/models/apiService.model";
 export function a_equipment_add_quantity(vs: ViewService, apis: ApiService, ws: WizardService) {
   return of(vs.objID).pipe(
     filter(objID => objID !== null),
-    switchMap(() => { return ws.create('addQuantity');}),
+    switchMap(() => ws.create('addQuantity')),  
     tap(() => {
       ws.allowSave(() => {
         if (ws.getValue('quantity') === '') {
@@ -38,6 +38,5 @@ export function a_equipment_add_quantity(vs: ViewService, apis: ApiService, ws: 
       vs.refresh();
     }),
     defaultIfEmpty(null)
-    
   );
 }
