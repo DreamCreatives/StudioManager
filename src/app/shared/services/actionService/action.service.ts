@@ -3,7 +3,6 @@ import { WizardService } from '../wizardService/wizard.service';
 import { YesNoService } from '../yesNoService/yes-no.service';
 import { ApiService } from '../apiService/api.service';
 import { ViewService } from '../viewService/view.service';
-import { ToastService } from '../toastService/toast.service';
 
 import {
   a_equipment_type_create,

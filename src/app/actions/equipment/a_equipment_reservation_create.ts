@@ -1,8 +1,10 @@
 import { ApiService } from "src/app/shared/services/apiService/api.service";
 import { ViewService } from "src/app/shared/services/viewService/view.service";
 import { WizardService } from "src/app/shared/services/wizardService/wizard.service";
-import { switchMap, of, tap, filter, defaultIfEmpty } from "rxjs";
+import { switchMap, tap, filter, defaultIfEmpty } from "rxjs";
 import { CID } from "src/app/shared/config/constants.json";
+import { EquipmentReservation } from "src/app/shared/models/apiService.model";
+import { HttpParams } from "@angular/common/http";
 
 export function a_equipment_reservation_create(vs: ViewService, apis: ApiService, ws: WizardService ) {
   return ws.create('addEquipmentReservation').pipe(
@@ -28,8 +30,8 @@ export function a_equipment_reservation_create(vs: ViewService, apis: ApiService
     filter(wizardDestroyed => wizardDestroyed.save),
     switchMap(wizardDestroyed => apis.saveRecord(
       CID.EQUIPMENT_RESERVATION,
-      wizardDestroyed.savedFields,
-      {}
+      wizardDestroyed.savedFields as EquipmentReservation,
+      new HttpParams
     )
   ),
     tap(() => {

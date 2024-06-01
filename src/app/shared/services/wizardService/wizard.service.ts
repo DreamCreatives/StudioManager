@@ -22,7 +22,7 @@ export class WizardService {
     private http: HttpClient
   ) { }
 
-  public isSaved: boolean = false;
+  public isSaved = false;
   public savedFields = {};
   public wizardForm = this.formBuilder.group({});
   public fields: WizardField[] = [];
@@ -58,7 +58,8 @@ export class WizardService {
     
             for (const field of wizardConfig.fields) {
               let options: {id: string, name: string}[] = [];
-              if (data !== null && data.hasOwnProperty(field.fieldName)) options = data[field.fieldName] as any;
+              if (data !== null && Object.prototype.hasOwnProperty.call(data, field.fieldName))
+                options = data[field.fieldName] as any;
 
               this.fields.push({
                 label: field.fieldLabel,

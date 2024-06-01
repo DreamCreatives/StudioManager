@@ -8,7 +8,7 @@ import { menusConfig } from '../../config/mainMenu.json';
   styleUrls: ['./main-menu.component.css']
 })
 export class MainMenuComponent implements OnInit {
-  constructor () { }
+
   public equipmentMenus: MainMenuPosition[] = [];
   public podcastMenus: MainMenuPosition[] = [];
   public printersMenus: MainMenuPosition[] = [];
@@ -20,7 +20,7 @@ export class MainMenuComponent implements OnInit {
   }
 
   getMenusByCategoryName(categoryName: string): MainMenuPosition[] {
-    let categoryMenuPositions: MainMenuPosition[] = [];
+    const categoryMenuPositions: MainMenuPosition[] = [];
     const categoryKey = categoryName as keyof typeof menusConfig[0];
 
     for (const key in menusConfig[0][categoryKey]) {
