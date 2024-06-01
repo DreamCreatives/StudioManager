@@ -8,6 +8,7 @@ import { DataGrid, Actions, Edit, Wizard, Calendar } from '../../models/view.mod
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { ToastService } from '../toastService/toast.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +53,11 @@ export class ViewService {
 
   showToast(message: string, toastType: string): void {
     this.toast.show(message, toastType);
+  }
+
+  handleError(error: HttpErrorResponse) {
+    const errorMessage = error.error.detail;
+    this.showToast(errorMessage, 'error');
   }
 
 }

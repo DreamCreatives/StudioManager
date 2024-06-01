@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ViewService } from '../../services/viewService/view.service';
 import { ActionService } from '../../services/actionService/action.service';
 import { ActivatedRoute } from '@angular/router';
@@ -11,7 +11,7 @@ import { switchMap, tap } from 'rxjs';
   styleUrls: ['./action-bar.component.css']
 })
 
-export class ActionBarComponent {
+export class ActionBarComponent implements OnInit {
   constructor(
     private viewService: ViewService,
     private actionService: ActionService,

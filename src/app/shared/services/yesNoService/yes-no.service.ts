@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ViewService } from '../viewService/view.service';
 import { MatDialog } from '@angular/material/dialog';
 import { fromEvent, Observable, switchMap, of, tap } from 'rxjs';
 import { YesNoComponent } from '../../components/yes-no/yes-no.component';
@@ -12,7 +11,7 @@ export class YesNoService {
   
   constructor(private dialog: MatDialog) { }
 
-  public isSaved: boolean = false;
+  public isSaved = false;
 
   run(question: string): Observable<boolean> {
     this.dialog.open(YesNoComponent, {

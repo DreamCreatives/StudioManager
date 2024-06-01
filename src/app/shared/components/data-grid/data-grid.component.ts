@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataTable } from 'simple-datatables';
 import { ViewService } from '../../services/viewService/view.service';
 import { ApiService } from '../../services/apiService/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap, tap } from 'rxjs';
+import { DataGridPaginationConfig, Equipment, EquipmentType } from '../../models/apiService.model';
 
 @Component({
   selector: 'app-data-grid',
@@ -11,7 +12,7 @@ import { switchMap, tap } from 'rxjs';
   styleUrls: ['./data-grid.component.css']
 })
 
-export class DataGridComponent {
+export class DataGridComponent implements OnInit {
   constructor(
     private viewService: ViewService,
     private apiService: ApiService,
@@ -35,20 +36,21 @@ export class DataGridComponent {
           tap(response => {
             const data: (string)[][] = [];
 
-            let dataHolder;
+            let dataHolder: DataGridPaginationConfig | EquipmentType[] | null;
 
-            if (response.hasOwnProperty('data')) {
+            if (Object.prototype.hasOwnProperty.call(response, 'data') && response !== null) {
               const dataKey = 'data' as keyof typeof response;
               dataHolder = response[dataKey];
             } else {
               dataHolder = response;
             }
+            
 
             for (const row in dataHolder) {
               const dataRow: (string )[] = [];
               const rowKey = row as keyof typeof dataHolder;
 
-              for (const object in dataHolder[rowKey]) {
+              for (const object in dataHolder[rowKey] as Equipment | EquipmentType) {
                 if (dataGridConfig.dataGridFieldsNames.indexOf(object) > -1) {
                   const objectKey = object as keyof typeof dataHolder[typeof rowKey];
                   dataRow.push(this.isObject(dataHolder[rowKey][objectKey]) ? dataHolder[rowKey][objectKey]['name'] : dataHolder[rowKey][objectKey]);
@@ -105,7 +107,7 @@ export class DataGridComponent {
     })
   }
 
-  isObject(value: any): boolean {
+  isObject(value: unknown): boolean {
     return value !== null && typeof value === 'object' && !Array.isArray(value);
   }
 
