@@ -30,9 +30,9 @@ export function a_equipment_add_quantity(vs: ViewService, apis: ApiService, ws: 
             response as Equipment,
             new HttpParams,
             String(vs.objID)
-            )
+         )
         })
-        );
+      );
     }),
     tap(() => {
       vs.refresh();
