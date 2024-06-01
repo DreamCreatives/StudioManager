@@ -11,12 +11,12 @@ export function a_equipment_add_quantity(vs: ViewService, apis: ApiService, ws: 
     filter(objID => objID !== null),
     switchMap(() => { return ws.create('addQuantity');}),
     tap(() => {
-    ws.allowSave(() => {
-      if (ws.getValue('quantity') === '') {
-        vs.showToast('Quantity is reqired', 'warning');
-        return false;
-      }
-      return true;
+      ws.allowSave(() => {
+        if (ws.getValue('quantity') === '') {
+          vs.showToast('Quantity is reqired', 'warning');
+          return false;
+        }
+       return true;
       })
     }),
     switchMap(() => ws.destroy()),
@@ -26,9 +26,9 @@ export function a_equipment_add_quantity(vs: ViewService, apis: ApiService, ws: 
       return apis.getEditObjectByID(CID.EQUIPMENT, params, String(vs.objID)).pipe(
         switchMap(response => {
           return apis.saveRecord(
-          CID.EQUIPMENT,
-          response as Equipment,
-          new HttpParams,
+            CID.EQUIPMENT,
+            response as Equipment,
+            new HttpParams,
             String(vs.objID)
             )
         })

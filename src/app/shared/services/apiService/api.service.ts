@@ -49,7 +49,6 @@ export class ApiService {
       })
     )
   }
-  
   saveRecord(
     url: string,
     body: Equipment | EquipmentType | EquipmentReservation,
@@ -78,7 +77,6 @@ export class ApiService {
       })
     );
   }
-
   deleteRecord(url: string, objectID: string): Observable<HttpResponseType | null> {
     return this.http.delete(`${url}/${objectID}`, { observe: 'response' }).pipe(
       tap(response => {
@@ -91,5 +89,4 @@ export class ApiService {
       })
     );
   }
-
 }
