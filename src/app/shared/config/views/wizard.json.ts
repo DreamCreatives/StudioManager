@@ -1,4 +1,5 @@
-import { CID } from "../constants.json"
+import { DROPDOWNS } from "../constants.json"
+
 export const wizardConfig = [
     {
         "addEquipmentList": {
@@ -16,7 +17,7 @@ export const wizardConfig = [
                     fieldType: "text",
                     fieldName: "equipmentTypeId",
                     isClass: true,
-                    classDataUrl: CID.EQUIPMENT_TYPE,
+                    classDataUrl: DROPDOWNS.EQUIPMENT_TYPE,
                 },
                 {
                     fieldLabel: "Quantity",
@@ -59,24 +60,56 @@ export const wizardConfig = [
                 },
             ]
         },
-        "addQuantity": {
-            title: 'Create quantity type',
+        "addEquipmentReservation": {
+            title: "Add equipment reservation",
             fields: [
+                {
+                    fieldLabel: "Equipment",
+                    fieldType: "text",
+                    fieldName: "equipmentId",
+                    isClass: true,
+                    classDataUrl: DROPDOWNS.EQUIPMENT,
+                },
+                {
+                    fieldLabel: "Start date",
+                    fieldType: "date",
+                    fieldName: "startDate",
+                    isClass: false,
+                    classDataUrl: '',
+                },
+                {
+                    fieldLabel: "End date",
+                    fieldType: "date",
+                    fieldName: "endDate",
+                    isClass: false,
+                    classDataUrl: '',
+                },
                 {
                     fieldLabel: "Quantity",
                     fieldType: "number",
                     fieldName: "quantity",
                     isClass: false,
                     classDataUrl: '',
-                },
+                }
             ],
             formBuilderGroupFields: [
                 {
-                    fieldKey: 'quantity',
-                    fieldValue: ''
+                    fieldKey: "equipmentId",
+                    fieldValue: ""
                 },
+                {
+                    fieldKey: "startDate",
+                    fieldValue: ""
+                },
+                {
+                    fieldKey: "endDate",
+                    fieldValue: ""
+                },
+                {
+                    fieldKey: "quantity",
+                    fieldValue: ""
+                }
             ]
         }
-
     }
 ]
