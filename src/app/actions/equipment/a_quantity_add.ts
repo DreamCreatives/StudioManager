@@ -16,8 +16,8 @@ export function a_equipment_add_quantity(vs: ViewService, apis: ApiService, ws: 
         })
       }),
       switchMap(() => ws.destroy()),
-      filter((wizardDestroyed: { save: any; }) => wizardDestroyed.save),
-      switchMap((wizardDestroyed: { savedFields: any; }) => apis.saveRecord(
+      filter(wizardDestroyed => wizardDestroyed.save),
+      switchMap(wizardDestroyed => apis.saveRecord(
           CID.EQUIPMENT,
           wizardDestroyed.savedFields,
            {}
