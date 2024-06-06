@@ -22,7 +22,6 @@ export class WizardComponent implements OnInit {
   public fields: WizardField[] = [];
 
   ngOnInit(): void {
-    console.log(this.data);
     this.wizardForm = this.wizardService.wizardForm;
     this.fields = this.wizardService.fields;
   }

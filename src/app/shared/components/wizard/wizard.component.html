@@ -7,15 +7,15 @@
     <div class="dialog-content">
         <form [formGroup]="data.formGroup">
             <div class="row mb-3" *ngFor="let field of data.fields">
-                <div *ngIf="field.isClass == false">
+                <div *ngIf="field.isClass === false">
                     <label for="inputText" class="col-sm-12 col-form-label">{{ field.label }}</label>
                     <div class="col-sm-12">
-                        <input type="{{ field.type }}" class="form-control" formControlName="{{ field.name }}">
+                        <input type="{{ field.type }}" class="form-control" formControlName="{{ field.name }}" [required]="field.isRequired">
                     </div>
                 </div>
-                <div *ngIf="field.isClass == true">
-                    <label class="col-sm-12 col-form-label">{{ field.label }}</label>
-                    <select class="form-select" formControlName="{{ field.name }}">
+                <div *ngIf="field.isClass === true">
+                    <label for="dropdownField" class="col-sm-12 col-form-label">{{ field.label }}</label>
+                    <select class="form-select" formControlName="{{ field.name }}" [required]="field.isRequired">
                         <option *ngFor="let option of field.options" [ngValue]="option.id">{{ option.name }}</option>
                     </select>
                 </div>
