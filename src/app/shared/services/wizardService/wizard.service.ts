@@ -60,12 +60,13 @@ export class WizardService {
               let options: {id: string, name: string}[] = [];
               if (data !== null && Object.prototype.hasOwnProperty.call(data, field.fieldName))
                 options = data[field.fieldName] as any;
-
+              
               this.fields.push({
-                label: field.fieldLabel,
+                label: (field.isRequired) ? field.fieldLabel + '*' : field.fieldLabel,
                 type: field.fieldType,
                 name: field.fieldName,
                 isClass: field.isClass,
+                isRequired: field.isRequired,
                 options: options
               })
             }

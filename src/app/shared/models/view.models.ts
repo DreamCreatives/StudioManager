@@ -13,6 +13,7 @@ export interface Edit {
         fieldType: string;
         fieldName: string;
         isClass: boolean;
+        isRequired: boolean;
         classDataUrl: string;
     }[],
     rerouteOnCancel: string;
@@ -30,6 +31,7 @@ export interface Wizard {
         fieldType: string;
         fieldName: string;
         isClass: boolean;
+        isRequired: boolean;
         classDataUrl: string;
     }[],
     formBuilderGroupFields: {

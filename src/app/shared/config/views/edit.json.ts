@@ -9,6 +9,7 @@ export const editConfig = [
                     fieldType: "text",
                     fieldName: "name",
                     isClass: false,
+                    isRequired: true,
                     classDataUrl: '',
                 },
                 {
@@ -16,6 +17,7 @@ export const editConfig = [
                     fieldType: "text",
                     fieldName: "quantity",
                     isClass: false,
+                    isRequired: false,
                     classDataUrl: '',
                 },
                 {
@@ -23,6 +25,7 @@ export const editConfig = [
                     fieldType: "text",
                     fieldName: "initialQuantity",
                     isClass: false,
+                    isRequired: false,
                     classDataUrl: '',
                 },
                 {
@@ -30,6 +33,7 @@ export const editConfig = [
                     fieldType: "number",
                     fieldName: "equipmentTypeId",
                     isClass: true,
+                    isRequired: false,
                     classDataUrl: DROPDOWNS.EQUIPMENT_TYPE,
                 }
             ],
@@ -61,6 +65,7 @@ export const editConfig = [
                     fieldType: "text",
                     fieldName: "name",
                     isClass: false,
+                    isRequired: false,
                     classDataUrl: '',
                 }
             ],
@@ -80,6 +85,7 @@ export const editConfig = [
                     fieldType: "text",
                     fieldName: "equipmentId",
                     isClass: true,
+                    isRequired: false,
                     classDataUrl: DROPDOWNS.EQUIPMENT,
                 },
                 {
@@ -87,6 +93,7 @@ export const editConfig = [
                     fieldType: "date",
                     fieldName: "startDate",
                     isClass: false,
+                    isRequired: false,
                     classDataUrl: '',
                 },
                 {
@@ -94,6 +101,7 @@ export const editConfig = [
                     fieldType: "date",
                     fieldName: "endDate",
                     isClass: false,
+                    isRequired: false,
                     classDataUrl: '',
                 },
                 {
@@ -101,6 +109,7 @@ export const editConfig = [
                     fieldType: "number",
                     fieldName: "quantity",
                     isClass: false,
+                    isRequired: false,
                     classDataUrl: '',
                 }
             ],
@@ -132,6 +141,7 @@ export const editConfig = [
                     fieldType: "text",
                     fieldName: "printerName",
                     isClass: false,
+                    isRequired: false,
                     classDataUrl: '',
                 },
                 {
@@ -139,6 +149,7 @@ export const editConfig = [
                     fieldType: "number",
                     fieldName: "printerTypeName",
                     isClass: false,
+                    isRequired: false,
                     classDataUrl: '',
                 }
             ],
@@ -153,6 +164,7 @@ export const editConfig = [
                     fieldType: "text",
                     fieldName: "stlFiletName",
                     isClass: false,
+                    isRequired: false,
                     classDataUrl: '',
                 }
             ],

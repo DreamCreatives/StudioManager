@@ -85,10 +85,11 @@ export class EditComponent implements OnInit {
                   }
 
                   this.fields.push({
-                    label: field.fieldLabel,
+                    label: (field.isRequired) ? field.fieldLabel + '*' : field.fieldLabel,
                     type: field.fieldType,
                     name: field.fieldName,
                     isClass: field.isClass,
+                    isRequired: field.isRequired,
                     options: options,
                   })
                 }

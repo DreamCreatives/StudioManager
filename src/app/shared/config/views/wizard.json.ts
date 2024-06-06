@@ -10,6 +10,7 @@ export const wizardConfig = [
                     fieldType: "text",
                     fieldName: "name",
                     isClass: false,
+                    isRequired: false,
                     classDataUrl: '',
                 },
                 {
@@ -17,6 +18,7 @@ export const wizardConfig = [
                     fieldType: "text",
                     fieldName: "equipmentTypeId",
                     isClass: true,
+                    isRequired: false,
                     classDataUrl: DROPDOWNS.EQUIPMENT_TYPE,
                 },
                 {
@@ -24,6 +26,7 @@ export const wizardConfig = [
                     fieldType: "number",
                     fieldName: "quantity",
                     isClass: false,
+                    isRequired: false,
                     classDataUrl: '',
                 },
             ],
@@ -50,6 +53,7 @@ export const wizardConfig = [
                     fieldType: "text",
                     fieldName: "name",
                     isClass: false,
+                    isRequired: false,
                     classDataUrl: '',
                 },
             ],
@@ -68,6 +72,7 @@ export const wizardConfig = [
                     fieldType: "text",
                     fieldName: "equipmentId",
                     isClass: true,
+                    isRequired: false,
                     classDataUrl: DROPDOWNS.EQUIPMENT,
                 },
                 {
@@ -75,6 +80,7 @@ export const wizardConfig = [
                     fieldType: "date",
                     fieldName: "startDate",
                     isClass: false,
+                    isRequired: false,
                     classDataUrl: '',
                 },
                 {
@@ -82,6 +88,7 @@ export const wizardConfig = [
                     fieldType: "date",
                     fieldName: "endDate",
                     isClass: false,
+                    isRequired: false,
                     classDataUrl: '',
                 },
                 {
@@ -89,6 +96,7 @@ export const wizardConfig = [
                     fieldType: "number",
                     fieldName: "quantity",
                     isClass: false,
+                    isRequired: false,
                     classDataUrl: '',
                 }
             ],

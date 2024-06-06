@@ -3,5 +3,6 @@ export interface EditField {
     type: string;
     name: string;
     isClass: boolean;
+    isRequired: boolean;
     options: {id: string, name: string, selected: boolean}[];
 }
