@@ -8,6 +8,7 @@ import { CalendarReservation } from '../../models/calendar.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap, tap, of } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
+import { LoginService } from '../../services/loginService/login.service';
 
 @Component({
   selector: 'app-calendar',
@@ -16,6 +17,7 @@ import { HttpParams } from '@angular/common/http';
 })
 export class CalendarComponent implements OnInit {
   constructor(
+    private loginService: LoginService,
     private viewService: ViewService,
     private apiService: ApiService,
     private route: ActivatedRoute,
@@ -37,6 +39,7 @@ export class CalendarComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    this.loginService.checkIfUserIsLogged();
     this.getFirstAndLastDayOfMonth();
     this.viewService.objID = null;
     this.route.data.pipe(

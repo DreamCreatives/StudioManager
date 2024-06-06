@@ -5,6 +5,7 @@ import { ApiService } from '../../services/apiService/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap, tap } from 'rxjs';
 import { DataGridPaginationConfig, Equipment, EquipmentType } from '../../models/apiService.model';
+import { LoginService } from '../../services/loginService/login.service';
 
 @Component({
   selector: 'app-data-grid',
@@ -14,6 +15,7 @@ import { DataGridPaginationConfig, Equipment, EquipmentType } from '../../models
 
 export class DataGridComponent implements OnInit {
   constructor(
+    private loginService: LoginService,
     private viewService: ViewService,
     private apiService: ApiService,
     private route: ActivatedRoute,
@@ -23,6 +25,7 @@ export class DataGridComponent implements OnInit {
   public dataGridName = '';
 
   ngOnInit(): void {
+    this.loginService.checkIfUserIsLogged();
     this.viewService.objID = null;
     this.route.data.pipe(
       switchMap(view => {

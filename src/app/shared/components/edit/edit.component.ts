@@ -7,6 +7,7 @@ import { EditField } from '../../models/edit.models';
 import { switchMap, tap, of, iif, forkJoin } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Equipment, EquipmentReservation, EquipmentType } from '../../models/apiService.model';
+import { LoginService } from '../../services/loginService/login.service';
 
 @Component({
   selector: 'app-edit',
@@ -15,6 +16,7 @@ import { Equipment, EquipmentReservation, EquipmentType } from '../../models/api
 })
 export class EditComponent implements OnInit {
   constructor(
+    private loginService: LoginService,
     private viewService: ViewService,
     private apiService: ApiService,
     private route: ActivatedRoute,
@@ -31,6 +33,7 @@ export class EditComponent implements OnInit {
   public fields: EditField[] = [];
 
   ngOnInit(): void {
+    this.loginService.checkIfUserIsLogged();
     this.route.data.pipe(
       switchMap(view => this.viewService.getEditConfig(view['viewID'])),
       tap(editConfig => {

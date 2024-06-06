@@ -9,7 +9,7 @@ import { CalendarComponent } from './shared/components/calendar/calendar.compone
 import { LoginComponent } from './shared/components/login/login.component';
 
 const routes: Routes = [
-  
+
   //Data grids
   { path: 'equipment-list', title: 'Equipment List', component: DataGridComponent, data: { viewID: 'equipmentList' } },
   { path: 'equipment-types-list', title: 'Equipment Types', component: DataGridComponent, data: { viewID: 'equipmentTypes' } },

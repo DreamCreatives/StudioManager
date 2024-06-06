@@ -35,7 +35,7 @@ import { LoginComponent } from './shared/components/login/login.component';
     ActionBarComponent,
     EditComponent,
     CalendarComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     AppRoutingModule,
