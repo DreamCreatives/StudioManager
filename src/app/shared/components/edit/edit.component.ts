@@ -5,7 +5,7 @@ import { ApiService } from '../../services/apiService/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EditField } from '../../models/edit.models';
 import { switchMap, tap, of, iif, forkJoin } from 'rxjs';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Equipment, EquipmentReservation, EquipmentType } from '../../models/apiService.model';
 import { LoginService } from '../../services/loginService/login.service';
 
@@ -42,9 +42,10 @@ export class EditComponent implements OnInit {
         this.rerouteOnCancel = editConfig.rerouteOnCancel;
       }),
       switchMap(editConfig => {
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + String(localStorage.getItem('token')));
         const toReturn: {[key: string]: any} = {};
         for (const field of editConfig.fields) {
-          if (field.isClass) toReturn[field.fieldName] = this.http.get(field.classDataUrl);
+          if (field.isClass) toReturn[field.fieldName] = this.http.get(field.classDataUrl, { headers: headers });
         }
         console.log(toReturn);
         return iif(() => Object.keys(toReturn).length !== 0, forkJoin(toReturn), of(null)).pipe(

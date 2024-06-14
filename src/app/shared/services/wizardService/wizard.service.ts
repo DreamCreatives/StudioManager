@@ -6,7 +6,7 @@ import { WizardComponent } from '../../components/wizard/wizard.component';
 import { WizardDestroyed } from '../../models/wizard.models';
 import { Observable, of, switchMap, fromEvent, tap, map, forkJoin, iif } from 'rxjs';
 import { WizardField } from '../../models/wizard.models';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -41,9 +41,10 @@ export class WizardService {
   create(wizardID: string): Observable<null> {
     return this.viewService.getWizardConfig(wizardID).pipe(
       switchMap(wizardConfig => {
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + String(localStorage.getItem('token')));
         const toReturn: {[key: string]: any;} = {};
         for (const field of wizardConfig.fields) {
-          if (field.isClass) toReturn[field.fieldName] = this.http.get(field.classDataUrl);
+          if (field.isClass) toReturn[field.fieldName] = this.http.get(field.classDataUrl, { headers: headers });
         }
 
         return iif(() => Object.keys(toReturn).length !== 0, forkJoin(toReturn), of(null)).pipe(
