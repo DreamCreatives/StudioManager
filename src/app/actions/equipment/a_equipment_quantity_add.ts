@@ -21,7 +21,7 @@ export function a_equipment_add_quantity(vs: ViewService, apis: ApiService, ws: 
     }),
     switchMap(() => ws.destroy()),
     filter(wizardDestroyed => wizardDestroyed.save),
-    switchMap(wizardDestroyed => {
+    switchMap(() => {
       const params = new HttpParams();
       return apis.getEditObjectByID(CID.EQUIPMENT, params, String(vs.objID)).pipe(
         switchMap(response => 
@@ -32,10 +32,11 @@ export function a_equipment_add_quantity(vs: ViewService, apis: ApiService, ws: 
             String(vs.objID)  
           )  
         )  
-        )
-          })
-      
+      )
+    }),
     tap(() => {
       vs.refresh();
     }),
     defaultIfEmpty(null)
+  )
+}
