@@ -33,6 +33,14 @@ export const dataGridConfig = [
             dataGridFieldsNames: ['id', 'name', 'quantity'],
             data: [[1, "Ender 3", "test ip"], [2, "Ender 3 V2", "test ip 2"]],
             getUrl: ''
+        },
+        "testsDataGrid": {
+            dataGridName: 'Test data grid',
+            reroutePath: 'test-data-grid',
+            headers: ["ID", "Data grid"],
+            dataGridFieldsNames: ['id', 'dataGrid'],
+            data: [[1, "Data grid 1"], [2, "Data grid 2"]],
+            getUrl: ''
         }
     }
 ]

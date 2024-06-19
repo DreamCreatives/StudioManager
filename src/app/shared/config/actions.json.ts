@@ -77,6 +77,14 @@ export const actionsConfig = [
                     actionName: 'deleteEquipmentReservation',
                 },
             ]
-        }
+        },
+        "testsActions": {
+            actions: [
+                {
+                    displayName: 'Test action',
+                    actionName: 'test'
+                }
+            ]
+        },
     }
 ]

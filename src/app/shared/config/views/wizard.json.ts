@@ -118,6 +118,25 @@ export const wizardConfig = [
                     fieldValue: ""
                 }
             ]
-        }
+        },
+        "testsWizard": {
+            title: 'Test wizard',
+            fields: [
+                {
+                    fieldLabel: "Name",
+                    fieldType: "text",
+                    fieldName: "name",
+                    isClass: false,
+                    isRequired: false,
+                    classDataUrl: '',
+                },
+            ],
+            formBuilderGroupFields: [
+                {
+                    fieldKey: 'name',
+                    fieldValue: ''
+                },
+            ]
+        },
     }
 ]
