@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
   providedIn: 'root'
 })
 export class ToastService {
-  private lastToastTime: number | null = null;
+  public lastToastTime: number | null = null;
 
   constructor(private toastr: ToastrService) { }
 

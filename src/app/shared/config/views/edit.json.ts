@@ -171,6 +171,26 @@ export const editConfig = [
             rerouteOnCancel: '',
             baseUrl: '',
             formBuilderGroupFields: []
-        }
+        },
+        "testsEdit": {
+            fields: [
+                {
+                    fieldLabel: "Name",
+                    fieldType: "text",
+                    fieldName: "name",
+                    isClass: false,
+                    isRequired: false,
+                    classDataUrl: '',
+                }
+            ],
+            rerouteOnCancel: 'edit-tests-list',
+            baseUrl: CID.EQUIPMENT_TYPE,
+            formBuilderGroupFields: [
+                {
+                    fieldKey: 'name',
+                    fieldValue: ''
+                },
+            ]
+        },
     }
 ]
