@@ -16,6 +16,9 @@ export const menusConfig = [
             "Printing calendar": "",
             "IOT": "",
             "STL Files list": "stl-files-list"
+        },
+        "testing": {
+            "Tabs component": "tabs-component"
         }
     }
 ]

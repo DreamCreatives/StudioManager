@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ViewService } from '../../services/viewService/view.service';
 import { ActionService } from '../../services/actionService/action.service';
 import { ActivatedRoute } from '@angular/router';
-import { Action } from '../../models/view.models';
+import { Action } from '../../models/action.model';
 import { switchMap, tap } from 'rxjs';
 
 @Component({

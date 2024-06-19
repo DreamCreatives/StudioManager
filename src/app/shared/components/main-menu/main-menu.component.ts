@@ -16,6 +16,7 @@ export class MainMenuComponent implements OnInit {
   public equipmentMenus: MainMenuPosition[] = [];
   public podcastMenus: MainMenuPosition[] = [];
   public printersMenus: MainMenuPosition[] = [];
+  public devMenus: MainMenuPosition[] = [];
 
   constructor (private loginService: LoginService, private router: Router) { }
 
@@ -27,6 +28,7 @@ export class MainMenuComponent implements OnInit {
       this.equipmentMenus = this.getMenusByCategoryName('equipment');
       this.podcastMenus = this.getMenusByCategoryName('podcast');
       this.printersMenus = this.getMenusByCategoryName('printers');
+      this.devMenus = this.getMenusByCategoryName('testing')
     } 
   }
 

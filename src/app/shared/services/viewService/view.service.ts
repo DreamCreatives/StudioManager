@@ -4,7 +4,8 @@ import { editConfig } from '../../config/views/edit.json';
 import { wizardConfig } from '../../config/views/wizard.json';
 import { actionsConfig } from '../../config/actions.json';
 import { calendarConfig } from '../../config/views/calendar.json';
-import { DataGrid, Actions, Edit, Wizard, Calendar } from '../../models/view.models';
+import { tabsConfig } from '../../config/tabs.json';
+import { DataGrid, Actions, Edit, Wizard, Calendar, Tabs } from '../../models/view.models';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { ToastService } from '../toastService/toast.service';
@@ -42,6 +43,11 @@ export class ViewService {
   getCalendarConfig(viewID: string): Observable<Calendar> {
     const calendarKey = viewID as keyof typeof calendarConfig[0];
     return of(calendarConfig[0][calendarKey]);
+  }
+
+  getTabsConfig(viewID: string): Observable<Tabs> {
+    const tabsKey = viewID as keyof typeof tabsConfig[0];
+    return of(tabsConfig[0][tabsKey]);
   }
 
   refresh(): void {
