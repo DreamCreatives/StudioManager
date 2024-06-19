@@ -7,6 +7,7 @@ import { UserProfileComponent } from './shared/components/user-profile/user-prof
 import { EditComponent } from './shared/components/edit/edit.component';
 import { CalendarComponent } from './shared/components/calendar/calendar.component';
 import { LoginComponent } from './shared/components/login/login.component';
+import { TabsComponent } from './shared/components/tabs/tabs.component';
 
 const routes: Routes = [
 
@@ -25,6 +26,9 @@ const routes: Routes = [
 
   //Calendars
   { path: 'equipment-reservations-calendar', title: 'Equipment Reservations', component: CalendarComponent, data: { viewID: 'equipmentReservationsCalendar' } },
+
+  //Dev
+  { path: 'tabs-component', title: 'Tabs component', component: TabsComponent, data: { viewID: 'test' } },
 
   { path: 'user', component: UserProfileComponent },
   { path: 'login', component: LoginComponent },

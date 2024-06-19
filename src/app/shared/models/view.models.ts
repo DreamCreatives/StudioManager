@@ -1,3 +1,5 @@
+import { Tab } from "./tabs.model";
+
 export interface DataGrid {
     dataGridName: string;
     reroutePath: string;
@@ -53,7 +55,6 @@ export interface Actions {
     }[];
 }
 
-export interface Action {
-    displayName: string;
-    actionName: string;
+export interface Tabs {
+    tabs: Tab[]
 }
