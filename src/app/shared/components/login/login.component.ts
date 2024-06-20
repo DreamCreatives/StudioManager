@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/loginService/login.service';
@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
         private formBuilder: FormBuilder,
         private router: Router,
         private loginService: LoginService,
+        private renderer: Renderer2
     ) { }
 
     ngOnInit() {
@@ -33,6 +34,12 @@ export class LoginComponent implements OnInit {
         .subscribe({
             next: (res: any) => {
               localStorage.setItem("token", res.access_token);
+              const body = document.body;
+              const className = 'toggle-sidebar';
+              
+              if (body.classList.contains(className)) {
+                this.renderer.removeClass(body, className);
+    }
               this.router.navigate(['/']);
             },
             error: (err) => {

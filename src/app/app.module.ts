@@ -22,6 +22,7 @@ import { CalendarComponent } from './shared/components/calendar/calendar.compone
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { LoginComponent } from './shared/components/login/login.component';
 import { TabsComponent } from './shared/components/tabs/tabs.component';
+import { HeaderComponent } from './shared/components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { TabsComponent } from './shared/components/tabs/tabs.component';
     CalendarComponent,
     LoginComponent,
     TabsComponent,
+    HeaderComponent,
   ],
   imports: [
     AppRoutingModule,
