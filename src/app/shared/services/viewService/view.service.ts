@@ -18,7 +18,7 @@ export class ViewService {
 
   constructor(private router: Router, private toast: ToastService) { }
 
-  public objID: string | null = null;
+  public objID: string[] = [];
 
   getDataGridConfig(dataGridID: string): Observable<DataGrid> {
     const dataGridKey = dataGridID as keyof typeof dataGridConfig[0];

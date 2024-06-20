@@ -41,7 +41,7 @@ export class CalendarComponent implements OnInit {
   ngOnInit(): void {
     this.loginService.checkIfUserIsLogged();
     this.getFirstAndLastDayOfMonth();
-    this.viewService.objID = null;
+    this.viewService.objID = [];
     this.route.data.pipe(
       switchMap(view => this.viewService.getCalendarConfig(view['viewID'])),
       tap(calendarConfig => {
@@ -78,12 +78,12 @@ export class CalendarComponent implements OnInit {
   }
   
   handelEventClick(event: EventClickArg): void {
-    this.viewService.objID = event.event._def.publicId;
+    this.viewService.objID = [event.event._def.publicId];
   }
 
   handleEventDidMount(info: EventMountArg): void {
     info.el.addEventListener('dblclick', () => {
-      this.router.navigate([this.reroutePath, this.viewService.objID]);
+      this.router.navigate([this.reroutePath, this.viewService.objID[0]]);
     });
   }
 
