@@ -4,14 +4,12 @@ import { Location } from '@angular/common'
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-
 @Injectable({
   providedIn: 'root'
 })
 
-
 export class LoginService  {
-  constructor(public location: Location, private http: HttpClient, private router: Router,) { }
+  constructor(public location: Location, private http: HttpClient, private router: Router) { }
 
   public login(user: string, password: string): Observable<any> {
     const headers = new HttpHeaders().set(
