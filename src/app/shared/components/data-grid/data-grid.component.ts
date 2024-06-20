@@ -26,7 +26,7 @@ export class DataGridComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginService.checkIfUserIsLogged();
-    this.viewService.objID = null;
+    this.viewService.objID = [];
     this.route.data.pipe(
       switchMap(view => {
         return this.viewService.getDataGridConfig(view['viewID'])
@@ -80,9 +80,8 @@ export class DataGridComponent implements OnInit {
             });
 
             rows.forEach(row => {
-              row.addEventListener('click', () => {
-                this.unselectAllCells();
-                this.selectRow(row);
+              row.addEventListener('click', (event) => {
+                this.selectRow(row, event);
               });
             });
           })
@@ -98,12 +97,17 @@ export class DataGridComponent implements OnInit {
     })
   }
 
-  selectRow(row: HTMLTableRowElement): void {
+  selectRow(row: HTMLTableRowElement, event: MouseEvent): void {
     const cells = Array.from(row.cells);
     let isFirstCell = true;
     cells.forEach(cell => {
       if (isFirstCell) {
-        this.viewService.objID = cell.textContent;
+        if (event.ctrlKey && !this.viewService.objID.includes(String(cell.textContent))) {
+          this.viewService.objID.push(String(cell.textContent));
+        } else {
+          this.unselectAllCells();
+          this.viewService.objID = [String(cell.textContent)];
+        }
         isFirstCell = false;
       }
       cell.style.background = 'lightgrey';
