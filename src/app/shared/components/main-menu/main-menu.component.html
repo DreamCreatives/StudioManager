@@ -7,7 +7,7 @@
         </a>
         <ul id="equipment-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li *ngFor="let equipmentMenu of equipmentMenus">
-            <a routerLink="{{ equipmentMenu.routerPath }}">
+            <a routerLink="/{{ equipmentMenu.routerPath }}">
               <i class="bi bi-circle"></i><span>{{ equipmentMenu.name }}</span>
             </a>
           </li>
@@ -20,7 +20,7 @@
         </a>
         <ul id="podcast-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li *ngFor="let podcastMenu of podcastMenus">
-            <a routerLink="{{ podcastMenu.routerPath }}">
+            <a routerLink="/{{ podcastMenu.routerPath }}">
               <i class="bi bi-circle"></i><span>{{ podcastMenu.name }}</span>
             </a>
           </li>
@@ -33,7 +33,7 @@
         </a>
         <ul id="printers-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li *ngFor="let printersMenu of printersMenus">
-            <a routerLink="{{ printersMenu.routerPath }}">
+            <a routerLink="/{{ printersMenu.routerPath }}">
               <i class="bi bi-circle"></i><span>{{ printersMenu.name }}</span>
             </a>
           </li>
@@ -46,7 +46,7 @@
         </a>
         <ul id="dev-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li *ngFor="let devMenu of devMenus">
-            <a routerLink="{{ devMenu.routerPath }}">
+            <a routerLink="/{{ devMenu.routerPath }}">
               <i class="bi bi-circle"></i><span>{{ devMenu.name }}</span>
             </a>
           </li>

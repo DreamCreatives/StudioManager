@@ -9,10 +9,14 @@ import { LoginService } from '../../services/loginService/login.service';
 export class HeaderComponent implements OnInit {
   constructor(private renderer: Renderer2, private loginService: LoginService) {}
 
+  public isLogged = this.loginService.getIsLogged();
+
   ngOnInit(): void{
-    const body = document.body;
-    const className = 'toggle-sidebar';
-    this.renderer.addClass(body, className);
+    if (!this.isLogged) {
+      const body = document.body;
+      const className = 'toggle-sidebar';
+      this.renderer.addClass(body, className);
+    }
   }
 
   toggleSidebar(): void {
